@@ -29,6 +29,7 @@ public final class Colors {
 	public static final String	HIGH_INTENSITY		= "\u001B[1m";
 	public static final String	LOW_INTENSITY		= "\u001B[2m";
 
+	public static final String  BOLD 				= "\u001B[1m";
 	public static final String	ITALIC				= "\u001B[3m";
 	public static final String	UNDERLINE			= "\u001B[4m";
 	public static final String	BLINK				= "\u001B[5m";
@@ -102,6 +103,11 @@ public final class Colors {
 
 	public String colorize(String original) {
 		return codes_str + original + SANE;
+	}
+
+
+	public String colorizeNoSane(String original) {
+		return codes_str + original;
 	}
 	
 	public String format(String template, Object... args) {

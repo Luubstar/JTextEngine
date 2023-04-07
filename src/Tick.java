@@ -1,13 +1,20 @@
 
 public class Tick extends Thread {
     String frame = "";
+    String log = "";
     public Tick(){}
     @Override
     public void run(){
         Engine.print("\033[?25l");
         while (true){
             try {
-                frame = Engine.GetLog() + Engine.Draw();
+                log = Engine.GetLog();
+                frame = "";
+                if (log != ""){
+                    frame += Colors.BOLD + Colors.ITALIC + "Debug logs: \n"+ log +Colors.SANE+ "+-----------------------------+\n\n" ; 
+                }
+
+                frame += Engine.Draw();
 
                 Engine.clearConsole();
                 System.out.flush();
@@ -25,7 +32,7 @@ public class Tick extends Thread {
 
                 Thread.sleep(Engine.frameTime());
 
-            } catch (Exception e) {Engine.DebugLog(e.getMessage(), Colors.Red);}
+            } catch (Exception e) {Engine.DebugLog("❌ " + e.getMessage(), Colors.Red);}
         }
     }
 }
