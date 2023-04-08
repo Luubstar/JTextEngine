@@ -47,17 +47,26 @@ public class Tick extends Thread {
                 String[] logs = log.split("\n");
                 for (int i = 0; i < logs.length; i++ ){
                     String newlog = logs[i];
-
-                    if (newlog.length() > Engine.getWidth()-2){
-                        newlog = "Error, Log is too big to print (WIP)";
+                    
+                    String clearlog  = Colors.clearANSI(newlog);
+                    
+                    if (clearlog.length() > Engine.getWidth()-2){
+                        String[] SplitedLogs = Engine.splitString(newlog, Engine.getWidth() -7);
+                        for (int a = 0; a < SplitedLogs.length; a++){
+                            String splitedlog = SplitedLogs[a];
+                            clearlog  = Colors.clearANSI(splitedlog);
+                            if (a == 0){logstring += verticalBlock + "  " + splitedlog + Colors.SANE+ space.repeat(Engine.getWidth() - 4 - clearlog.length()) + verticalBlock;}    
+                            else{logstring += verticalBlock + "     " + splitedlog + Colors.SANE+ space.repeat(Engine.getWidth() - 7 - clearlog.length()) + verticalBlock;}
+                        }
                     }
-                    logstring += verticalBlock + "  " + newlog+ space.repeat(Engine.getWidth() - 4 - newlog.length()) + verticalBlock; }
-
+                    else{logstring += verticalBlock + "  " + newlog + Colors.SANE+ space.repeat(Engine.getWidth() - 4 - clearlog.length()) + verticalBlock;}}
                 logstring += "\n┗" + block.repeat(Engine.getWidth() -2) + "┛";
             }
             return logstring;
         }
-        catch(Exception e){Engine.print(e.getMessage() + e.getCause());return "";}
+        catch(Exception e){Engine.DebugSingleLog(e.getMessage() + " " + e.getCause(), Engine.DEBUGERROR);return "";}
     }
+
+
 
 }

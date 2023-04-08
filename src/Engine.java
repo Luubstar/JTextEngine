@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 public class Engine {
     private static int tick = 50;
     private static Menu MenuActual;
@@ -66,11 +67,11 @@ public class Engine {
     public static void DebugLog(String log, Colors color){DLog +=color.colorizeNoSane("\n " + log);}
     public static void DebugLog(String log, int Modo){ 
         String prefix = "";
-        if(Modo == DEBUGMESSAGE){prefix = "📃 ";}
-        else if (Modo == DEBUGOK){prefix = "✅ " + Colors.GREEN;}
-        else if (Modo == DEBUGWARNING){prefix = "⚠️ " + Colors.YELLOW;}
-        else if (Modo == DEBUGERROR){prefix = "❌ " + Colors.RED;}
-        DLog += prefix + log;
+        if(Modo == DEBUGMESSAGE){prefix = "✉ ";}
+        else if (Modo == DEBUGOK){prefix = Colors.GREEN + "✔ ";}
+        else if (Modo == DEBUGWARNING){prefix = Colors.YELLOW + "⚠ ";}
+        else if (Modo == DEBUGERROR){prefix = Colors.RED + "✘ ";}
+        DLog += "\n " + prefix + log;
     }
 
     public static void ClearLog(){DLog = "";}
@@ -127,4 +128,19 @@ public class Engine {
         WIDTH = Integer.parseInt(size[0]);
         HEIGHT = Integer.parseInt(size[1]);
 }
+
+    public static String[] splitString(String input, int maxLength) {
+
+        int chunks = (int) Math.ceil((double) input.length() / maxLength);
+        
+        String[] result = new String[chunks];
+        
+        for (int i = 0; i < chunks; i++) {
+            int start = i * maxLength;
+            int end = Math.min(start + maxLength, input.length());
+            result[i] = input.substring(start, end);
+        }
+        
+        return result;
+    }
 }

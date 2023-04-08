@@ -55,6 +55,8 @@ public final class Colors {
 	public static final String	BACKGROUND_CYAN		= "\u001B[46m";
 	public static final String	BACKGROUND_WHITE	= "\u001B[47m";
 
+	public static final String[] ListOfColors = {SANE, HIGH_INTENSITY,LOW_INTENSITY,BOLD,ITALIC,UNDERLINE,BLINK,RAPID_BLINK,REVERSE_VIDEO,INVISIBLE_TEXT,BLACK,RED,GREEN,YELLOW, BLUE, MAGENTA, CYAN, WHITE, BACKGROUND_BLACK,BACKGROUND_RED,BACKGROUND_GREEN,BACKGROUND_YELLOW,BACKGROUND_BLUE,BACKGROUND_MAGENTA,BACKGROUND_CYAN,BACKGROUND_WHITE};
+
 	public static final Colors HighIntensity = new Colors(HIGH_INTENSITY);
 	public static final Colors Bold = HighIntensity;
 	public static final Colors LowIntensity = new Colors(LOW_INTENSITY);
@@ -112,5 +114,12 @@ public final class Colors {
 	
 	public String format(String template, Object... args) {
 		return colorize(String.format(template, args));
+	}
+
+	public static String clearANSI(String input){
+		for (String cadena: ListOfColors){
+			if (input.contains(cadena)){input = input.replace(cadena, "");}
+		}
+		return input;
 	}
 }
