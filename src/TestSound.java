@@ -1,4 +1,4 @@
-public class TestSound implements Menu {
+public class TestSound extends Menu {
     @Override
     public String Frame() {
         return """
@@ -11,7 +11,7 @@ public class TestSound implements Menu {
     }
 
     @Override
-    public void InputSystem() {
+    public void Update() {
         if(Keyboard.getKeyValue() == "1"){
             Sound boom = Sound.fromPath("resources/Quest.wav");
             SoundEngine.playSound(boom);

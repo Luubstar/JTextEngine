@@ -1,5 +1,5 @@
 
-public class StartMenu implements Menu {
+public class StartMenu extends Menu {
 
     String[] opciones = {"   Pantalla de carga", "   Prueba de colores", "   Prueba de sonido", "   Prueba de entrada", "   Salir"};
     int pos = 0;
@@ -26,7 +26,7 @@ public class StartMenu implements Menu {
     }
 
     @Override
-    public void InputSystem() {
+    public void Update() {
         if(Keyboard.getKeyValue() == "S"){
             pos++;
             if (pos >= opciones.length){pos = 0;}

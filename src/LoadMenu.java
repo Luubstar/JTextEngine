@@ -1,6 +1,6 @@
  
 
-public class LoadMenu implements Menu {
+public class LoadMenu extends Menu {
     int pos = 0;
     String[] opciones = {"/", "/", "-", "-", "\\", "\\", "|", "|"};
     @Override
@@ -23,7 +23,7 @@ public class LoadMenu implements Menu {
     }
 
     @Override
-    public void InputSystem() {
+    public void Update() {
         if (Keyboard.getKeyValue() == "Intro"){ Engine.SetMenu( new StartMenu());}
         Keyboard.Reset();
     }

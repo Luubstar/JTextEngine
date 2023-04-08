@@ -1,6 +1,7 @@
  
 
-public interface Menu {
-    void InputSystem();
-    String Frame();
+public class Menu {
+    public void Update(){}
+    public void Start(){}
+    public String Frame(){return "";}
 }

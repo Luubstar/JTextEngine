@@ -33,7 +33,7 @@ public class Engine {
     public static void SetFrameTime(int ms){tick = ms;}
     public static void SetMenu(Menu newMenu){MenuActual = newMenu;}
     public static String Draw(){return MenuActual.Frame();}
-    public static void GetInput(){MenuActual.InputSystem();}
+    public static void GetInput(){MenuActual.Update();}
 
     public static void DebugSingleLog(String log){DLog = log;}
     public static void DebugSingleLog(String log, Colors color){DLog = color.colorizeNoSane( log);}

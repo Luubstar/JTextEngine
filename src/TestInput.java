@@ -1,6 +1,6 @@
  
 
-public class TestInput implements Menu {
+public class TestInput extends Menu {
     
     String pantalla = "";
     @Override
@@ -10,7 +10,7 @@ public class TestInput implements Menu {
     }
     
     @Override
-    public void InputSystem() {
+    public void Update() {
         if (Keyboard.getKeyCode() != 0){pantalla = Keyboard.getKeyValue() + " -> " + Keyboard.getKeyCode();}
         Keyboard.Reset();
     }
