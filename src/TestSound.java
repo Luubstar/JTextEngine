@@ -17,7 +17,7 @@ public class TestSound implements Menu {
             SoundEngine.playSound(boom);
         }
         else if(Keyboard.getKeyValue() == "2"){
-            Sound boom = Sound.fromPath("resources/Quest.mp3");
+            Sound boom = Sound.fromPath("resources/Quest.mp3",1);
             SoundEngine.playSound(boom);
         }
         else if (Keyboard.getKeyValue() == "3"){Engine.SetMenu(new StartMenu());}

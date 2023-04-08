@@ -11,7 +11,7 @@ public class Tick extends Thread {
                 log = Engine.GetLog();
                 frame = "";
                 if (log != ""){
-                    frame += Colors.BOLD + Colors.ITALIC + "Debug logs: \n"+ log +Colors.SANE+ "+-----------------------------+\n\n" ; 
+                    frame += Colors.BOLD + Colors.ITALIC + "Debug logs: \n"+ log +Colors.SANE+ "\n+-----------------------------+\n\n" ; 
                 }
 
                 frame += Engine.Draw();

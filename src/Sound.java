@@ -5,6 +5,7 @@ import javax.sound.sampled.AudioInputStream;
 
 import java.io.File;
 import java.io.FileInputStream;
+
 import javazoom.jl.player.Player;
 
 public class Sound extends Thread {
@@ -14,8 +15,9 @@ public class Sound extends Thread {
     Player player;
     float volume;
     AudioInputStream AudioIS;
-    int Loops = 0;
+    int Loops = 1;
     String extension;
+    File file;
 
     @Override
     public void run() {
@@ -33,14 +35,15 @@ public class Sound extends Thread {
                 this.clip.close();
                 this.AudioIS.close();}
             else if (extension.equals(".mp3")){
-                player.play(Loops);
-                player.setVolume(volume);
-
-                while(!player.isComplete()){
-                    Thread.sleep(10);
+                for (int i = 0; i < Loops; i++){
+                    Sound sonido = new Sound(file, volume);
+                    sonido.player.play();
+                    sonido.player.close();
                 }
+                player.play();
                 player.close();
             }
+            else{throw new Exception("Error reproduciendo");}
 
         } catch (Exception e){Engine.DebugLog("❌ " + e.getMessage(), Colors.Red);}
     }
@@ -56,6 +59,7 @@ public class Sound extends Thread {
                 clip.open(AudioIS);
 
                 this.setVolume(volume);
+                this.file = soundFile;
             
             }
             else if(extension.equals(".mp3")){
@@ -63,6 +67,7 @@ public class Sound extends Thread {
                 player = new Player(IS);
                 player.setVolume(volume);
                 this.volume = mapToDecibels(volume);
+                this.file = soundFile;
             }
             else{
                 throw new Exception("Error loading the audio file " + extension);
@@ -75,6 +80,14 @@ public class Sound extends Thread {
         try{
             File file = new File(filepath);
             return new Sound(file, SoundEngine.GeneralVolume);
+        }
+        catch(Exception e){Engine.DebugLog("❌ " + e.getMessage(), Colors.Red); return null;}
+    }
+
+    public static Sound fromPath(String filepath, int volume){
+        try{
+            File file = new File(filepath);
+            return new Sound(file, volume);
         }
         catch(Exception e){Engine.DebugLog("❌ " + e.getMessage(), Colors.Red); return null;}
     }

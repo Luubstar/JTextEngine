@@ -42,14 +42,14 @@ public class Engine {
     public static void DebugLog(String log, Colors color){DLog +=color.colorizeNoSane("\n" + log);}
 
     public static void ClearLog(){DLog = "";}
-    public static String GetLog(){return DLog + "\n";}
+    public static String GetLog(){return DLog;}
     
     public static String getFileExtension(File file) {
         try{
             String name = file.getName();
             int lastIndexOf = name.lastIndexOf(".");
             if (lastIndexOf == -1) {
-                return ""; // empty extension
+                return ""; 
             }
             return name.substring(lastIndexOf);
         }
