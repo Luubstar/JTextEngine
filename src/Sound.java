@@ -45,7 +45,7 @@ public class Sound extends Thread {
             }
             else{throw new Exception("Error reproduciendo");}
 
-        } catch (Exception e){Engine.DebugLog("❌ " + e.getMessage(), Colors.Red);}
+        } catch (Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);;}
     }
     
     public Sound(File soundFile, float volume){
@@ -73,7 +73,7 @@ public class Sound extends Thread {
                 throw new Exception("Error loading the audio file " + extension);
             }
         }
-        catch (Exception e){Engine.DebugLog("❌ " + e.getMessage(), Colors.Red);}
+        catch (Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);;}
     }
 
     public static Sound fromPath(String filepath){
@@ -81,7 +81,7 @@ public class Sound extends Thread {
             File file = new File(filepath);
             return new Sound(file, SoundEngine.GeneralVolume);
         }
-        catch(Exception e){Engine.DebugLog("❌ " + e.getMessage(), Colors.Red); return null;}
+        catch(Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);; return null;}
     }
 
     public static Sound fromPath(String filepath, int volume){
@@ -89,7 +89,7 @@ public class Sound extends Thread {
             File file = new File(filepath);
             return new Sound(file, volume);
         }
-        catch(Exception e){Engine.DebugLog("❌ " + e.getMessage(), Colors.Red); return null;}
+        catch(Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);; return null;}
     }
 
     public void setVolume(float volume){
@@ -109,7 +109,7 @@ public class Sound extends Thread {
                 this.volume = mapToDecibels(volume);
             }
         }
-        catch(Exception e){Engine.DebugLog("❌ " + e.getMessage(), Colors.Red);}
+        catch(Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);;}
     }
 
     public static float mapToDecibels(float value) {
@@ -124,13 +124,13 @@ public class Sound extends Thread {
 
             return decibels;
         }
-        catch (Exception e){Engine.DebugLog("❌ " + e.getMessage(), Colors.Red); return 0;}
+        catch (Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);; return 0;}
     }
 
     public void setPosition(long Microseconds){
         if(extension.equals(".wav")){
             try{this.clip.setMicrosecondPosition(Microseconds);}
-            catch(Exception e){Engine.DebugLog("❌ " + e.getMessage(), Colors.Red);}}
+            catch(Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);;}}
         else if(extension.equals(".mp3")){Engine.DebugLog("Los archivos de tipo .mp3 no admiten el comando ''.setPosition'", Colors.Red);}}
 
     public long getPosition(){
