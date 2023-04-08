@@ -11,7 +11,6 @@ import javazoom.jl.player.Player;
 public class Sound extends Thread {
 
     Clip clip;
-    String tags;
     Player player;
     float volume;
     AudioInputStream AudioIS;

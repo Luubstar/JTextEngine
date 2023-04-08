@@ -12,6 +12,6 @@ public class TestInput extends Menu {
     @Override
     public void Update() {
         if (Keyboard.getKeyCode() != 0){pantalla = Keyboard.getKeyValue() + " -> " + Keyboard.getKeyCode();}
-        Keyboard.Reset();
+        Keyboard.Clear();
     }
 }

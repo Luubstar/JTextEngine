@@ -43,7 +43,7 @@ public class StartMenu extends Menu {
             else{ System.exit(1);}
             
         }
-        Keyboard.Reset();
+        Keyboard.Clear();
 
     }
     

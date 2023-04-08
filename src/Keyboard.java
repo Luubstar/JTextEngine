@@ -22,7 +22,7 @@ public class Keyboard implements NativeKeyListener {
 
     public static int getKeyCode(){return LastKey;}
     public static String getKeyValue(){return NativeKeyEvent.getKeyText(LastKey);}
-	public static void Reset(){
+	public static void Clear(){
 		LastKey = 0;
 		pos = 0;}
 
