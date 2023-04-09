@@ -1,6 +1,12 @@
+package Examples;
+
+import Engine.Engine;
+import Engine.Keyboard;
+import Engine.Menu;
+
 public class StartMenu extends Menu {
 
-    String[] opciones = {"   Pantalla de carga", "   Prueba de colores", "   Prueba de sonido", "   Prueba de entrada", "   Salir"};
+    String[] opciones = {"   Pantalla de carga", "   Prueba de colores", "   Prueba de sonido", "   Prueba de entrada", "   Prueba de red", "   Salir"};
     int pos = 0;
     String Titulo = """
         ████████╗███████╗███████╗████████╗    ███╗   ███╗███████╗███╗   ██╗██╗   ██╗
@@ -39,6 +45,7 @@ public class StartMenu extends Menu {
             else if (pos == 1 ){Engine.SetMenu( new Rainbow());}
             else if (pos == 2 ){Engine.SetMenu( new TestSound());}
             else if (pos == 3 ){Engine.SetMenu( new TestInput());}
+            else if (pos == 4 ){Engine.SetMenu( new TestChat());}
             else{ System.exit(1);}
             
         }

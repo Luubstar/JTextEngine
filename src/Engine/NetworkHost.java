@@ -1,3 +1,4 @@
+package Engine;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -5,30 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NetworkHost{
-    
-
-    private int port = 5555;
-    private boolean going = true;
-    int Timeout = 15000;
+    public  boolean going = true;
+    public int Timeout = 15000;
 
     public List<ClientObject> Clients = new ArrayList<>();
-    ServerSocket serverSocket;
-
-    public NetworkHost(int port){this.port = port;}
+    public ServerSocket serverSocket;
 
     public NetworkHost(){}
 
-    public void Start() throws Exception{
+    public void Start(int port, NetworkHost host) throws Exception{
         serverSocket = new ServerSocket(port);
-        Engine.print("Started on " + port);
 
         while (going) {
             Socket clientSocket = serverSocket.accept();
             clientSocket.setSoTimeout(Timeout);
-            ClientObject client = new ClientObject(clientSocket, this);
-            onClientConnected(client);
-            Clients.add(client);
+            ClientObject client = new ClientObject(clientSocket, host);
             client.start();
+            host.Clients.add(client);
+            host.onClientConnected(client);
         }
         serverSocket.close();
     }
@@ -37,12 +32,15 @@ public class NetworkHost{
 
 
     public void onClientConnected(ClientObject client) throws Exception{
+        System.out.println("connected");
     }
 
     public void onClientDisconnected(ClientObject client) throws Exception{
+        System.out.println("disconnected");
     }
 
     public void onRecieveFromClient(ClientObject client, byte[] data) throws Exception{
+        System.out.println("data");
     }
 
     public void Send(ClientObject client, String data) throws IOException{
@@ -55,17 +53,34 @@ public class NetworkHost{
         client.salida.write(data);
     }
 
-    public void SendToAll(ClientObject client, String data) throws IOException{
+    public void SendToAll(String data) throws IOException,InterruptedException{
+
         for (ClientObject clientToSend : Clients){
-            clientToSend.salida.writeInt(data.getBytes().length);
-            clientToSend.salida.write(data.getBytes());
+            int i = 0;
+            while(clientToSend.salida == null && i < 10){
+                i++;
+                Thread.sleep(10);
+            }
+            if(clientToSend.salida != null){
+                clientToSend.salida.writeInt(data.getBytes().length);
+                clientToSend.salida.write(data.getBytes());
+            }
         }
     }
 
-    public void SendToAll(ClientObject client, byte[] data) throws IOException{
+    public void SendToAll(byte[] data) throws IOException, InterruptedException{
+
         for (ClientObject clientToSend : Clients){
-            clientToSend.salida.writeInt(data.length);
-            clientToSend.salida.write(data);
+            int i = 0;
+            while(clientToSend.salida == null && i < 10){
+                i++;
+                Thread.sleep(10);
+            }
+            
+            if(clientToSend.salida != null){
+                clientToSend.salida.writeInt(data.length);
+                clientToSend.salida.write(data);
+            }
         }
     }
 

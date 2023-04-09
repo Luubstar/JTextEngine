@@ -1,5 +1,6 @@
- 
-
+package Examples;
+import Engine.Colors;
+import Engine.Menu;
 
 public class Rainbow extends Menu{
 

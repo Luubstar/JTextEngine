@@ -1,3 +1,4 @@
+package Engine;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -8,8 +9,8 @@ public class ClientObject extends Thread {
     public Socket clientSocket;
     public NetworkHost host;
 
-    DataInputStream entrada;
-    DataOutputStream salida;
+    public DataInputStream entrada;
+    public DataOutputStream salida;
 
     Charset charset = Charset.forName("UTF-8");
     
@@ -22,14 +23,11 @@ public class ClientObject extends Thread {
     @Override
     public void run(){
         try {
-
             entrada = new DataInputStream(clientSocket.getInputStream());
             salida = new DataOutputStream(clientSocket.getOutputStream());
-
             int length = 1;
 
             while (length > 0 && connected) {
-                System.out.println(entrada.available() + ":" + clientSocket.isConnected());
                 if (entrada.available() > 0){
                     length = entrada.readInt();
                     byte[] mensajeByte = new byte[length];
@@ -38,7 +36,7 @@ public class ClientObject extends Thread {
                 }
                 else{
                     if (!clientSocket.isConnected()){Stop();}
-                    Thread.sleep(10);
+                    Thread.sleep(20);
                 }
             }
             entrada.close();

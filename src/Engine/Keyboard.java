@@ -1,3 +1,4 @@
+package Engine;
  
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
@@ -5,26 +6,9 @@ import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 
 public class Keyboard implements NativeKeyListener {
-    public static int LastKey = 0;
+    private static int LastKey = 0;
     public static int pos = 0;
-
-	public void nativeKeyPressed(NativeKeyEvent e) {
-        LastKey = e.getKeyCode();
-		pos = 0;
-		if (e.getKeyCode() == NativeKeyEvent.VC_ESCAPE) {
-            		try {
-                		GlobalScreen.unregisterNativeHook();
-            		} catch (NativeHookException nativeHookException) {
-                		nativeHookException.printStackTrace();
-            		}
-        	}
-	}
-
-    public static int getKeyCode(){return LastKey;}
-    public static String getKeyValue(){return NativeKeyEvent.getKeyText(LastKey);}
-	public static void Clear(){
-		LastKey = 0;
-		pos = 0;}
+	private static char LastChar;
 
 	public static void Start() {
 		try {
@@ -38,5 +22,23 @@ public class Keyboard implements NativeKeyListener {
 		}
 
 		GlobalScreen.addNativeKeyListener(new Keyboard());
+	}
+
+	public void nativeKeyPressed(NativeKeyEvent e) {
+        LastKey = e.getKeyCode();
+		pos = 0;
+	}
+
+    public void nativeKeyTyped(NativeKeyEvent e) {
+        
+		LastChar = e.getKeyChar();
+    }
+
+    public static int getKeyCode(){return LastKey;}
+    public static String getKeyValue(){return NativeKeyEvent.getKeyText(LastKey);}
+	public static char getKeyCharacter() {return LastChar;}
+	public static void Clear(){
+		LastKey = 0;
+		pos = 0;
 	}
 }

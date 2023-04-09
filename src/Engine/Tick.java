@@ -1,3 +1,4 @@
+package Engine;
 
 public class Tick extends Thread {
     String frame = "";
@@ -25,8 +26,7 @@ public class Tick extends Thread {
 
                 Keyboard.pos++;
                 if (Keyboard.pos > 5){
-                    Keyboard.pos = 0;
-                    Keyboard.LastKey = 0;
+                    Keyboard.Clear();
                 }
 
                 Engine.GetInput();
