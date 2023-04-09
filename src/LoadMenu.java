@@ -1,4 +1,4 @@
- 
+
 
 public class LoadMenu extends Menu {
     int pos = 0;

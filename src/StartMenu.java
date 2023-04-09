@@ -1,4 +1,3 @@
-
 public class StartMenu extends Menu {
 
     String[] opciones = {"   Pantalla de carga", "   Prueba de colores", "   Prueba de sonido", "   Prueba de entrada", "   Salir"};
