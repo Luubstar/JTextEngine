@@ -22,6 +22,8 @@ public class TestChat extends Menu{
         try{
             
             Scanner scanner = new Scanner(System.in);
+            System.out.println("Pulsa una tecla para continuar ");
+            IP = scanner.nextLine();
 
             System.out.println("Introduzca la dirección IP: ");
             IP = scanner.nextLine();

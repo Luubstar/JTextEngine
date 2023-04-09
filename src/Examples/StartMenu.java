@@ -15,8 +15,6 @@ public class StartMenu extends Menu {
            ██║   ██╔══╝  ╚════██║   ██║       ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║
            ██║   ███████╗███████║   ██║       ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝
            ╚═╝   ╚══════╝╚══════╝   ╚═╝       ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝
-
-
     
         """;
 
@@ -41,6 +39,7 @@ public class StartMenu extends Menu {
             if(pos < 0){pos = opciones.length-1;}
         }
         else if (Keyboard.getKeyValue() == "Intro"){
+            Keyboard.Clear();
             if (pos == 0) {Engine.SetMenu( new LoadMenu());}
             else if (pos == 1 ){Engine.SetMenu( new Rainbow());}
             else if (pos == 2 ){Engine.SetMenu( new TestSound());}
@@ -49,6 +48,7 @@ public class StartMenu extends Menu {
             else{ System.exit(1);}
             
         }
+
         Keyboard.Clear();
 
     }

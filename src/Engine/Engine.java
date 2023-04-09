@@ -49,7 +49,7 @@ public class Engine {
 
     public static int frameTime(){return tick;};
     public static void SetFrameTime(int ms){tick = ms;}
-    public static void SetMenu(Menu newMenu){MenuActual = newMenu; MenuActual.Start();}
+    public static void SetMenu(Menu newMenu){MenuActual = newMenu;clearConsole(); MenuActual.Start();}
     public static String Draw(){return MenuActual.Frame();}
     public static void GetInput(){MenuActual.Update();}
 
