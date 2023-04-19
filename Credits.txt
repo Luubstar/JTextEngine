@@ -1,0 +1,7 @@
+These libraries that I am going to cite have been used for this project. Thanks to all the authors and their respective communities for such valuable work. No modification has been made.
+
+Lanterna: https://github.com/mabe02/lanterna [license:https://github.com/mabe02/lanterna/blob/master/License.txt]
+
+JLayer:https://github.com/umjammer/jlayer [license:https://github.com/umjammer/jlayer/blob/master/LICENSE.txt]
+
+JAnsi: https://github.com/fusesource/jansi [license: https://github.com/fusesource/jansi/blob/master/license.txt]
