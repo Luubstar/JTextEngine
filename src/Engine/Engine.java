@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 public class Engine {
     private static int tick = 50;
     private static Menu MenuActual;
@@ -29,7 +28,7 @@ public class Engine {
             Tick Ticker = new Tick();
             Ticker.start();
         }
-        catch(Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);;}
+        catch(Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);}
     }
 
     public static void print(String text){System.out.print(text + "\n");}

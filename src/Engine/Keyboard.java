@@ -5,6 +5,7 @@ import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 
+
 public class Keyboard implements NativeKeyListener {
     private static int LastKey = 0;
     public static int pos = 0;
@@ -25,6 +26,7 @@ public class Keyboard implements NativeKeyListener {
 	}
 
 	public void nativeKeyPressed(NativeKeyEvent e) {
+
         LastKey = e.getKeyCode();
 		pos = 0;
 	}
