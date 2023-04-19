@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/nbr/Documentos/Java de chill/Text Engine/lib/jl1.0.1.jar",
+        "/home/nbr/Documentos/Java de chill/Text Engine/lib/jnativehook-2.2.2.jar"
+    ]
+}
