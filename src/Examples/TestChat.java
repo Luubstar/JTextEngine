@@ -51,9 +51,9 @@ public class TestChat extends Menu{
                 mensajes += "\n" + data;
             }
 
-            if (Keyboard.getKeyCode() != 0 && Keyboard.getKeyCode() != 28 && Keyboard.getKeyCode() != 14){futureMessage += String.valueOf(Keyboard.getKeyCharacter());}
-            else if (Keyboard.getKeyCode() == 14 && futureMessage.length() > 0){futureMessage = futureMessage.substring(0,futureMessage.length()-1);}
-            else if (Keyboard.getKeyCode() == 28){
+            if (Keyboard.IsLastKeyOfType("Character")){futureMessage += Keyboard.getKeyValue();}
+            else if (Keyboard.IsLastKeyOfType("Backspace") && futureMessage.length() > 0){futureMessage = futureMessage.substring(0,futureMessage.length()-1);}
+            else if (Keyboard.IsLastKeyOfType("Enter")){
                 System.out.print("Enviando");
                 client.Send("["+name+"] "+ futureMessage);
                 futureMessage = "";

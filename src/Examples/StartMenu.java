@@ -3,7 +3,7 @@ package Examples;
 import Engine.Engine;
 import Engine.Keyboard;
 import Engine.Menu;
-import com.googlecode.lanterna.input.KeyType;
+
 public class StartMenu extends Menu {
 
     String[] opciones = {"   Pantalla de carga", "   Prueba de colores", "   Prueba de sonido", "   Prueba de entrada", "   Prueba de red", "   Salir"};
@@ -30,16 +30,15 @@ public class StartMenu extends Menu {
 
     @Override
     public void Update() {
-        System.out.println(KeyType.Enter);
-        if(Keyboard.getKeyValue().toLowerCase().equals( "s") ){
+        if(Keyboard.IsLastKeyValue("S") || Keyboard.IsLastKeyOfType("ArrowDown")){
             pos++;
             if (pos >= opciones.length){pos = 0;}
         }
-        else if(Keyboard.getKeyValue().toLowerCase().equals( "w")){
+        else if(Keyboard.IsLastKeyValue("W") || Keyboard.IsLastKeyOfType("ArrowUp")){
             pos--;
             if(pos < 0){pos = opciones.length-1;}
         }
-        else if (Keyboard.getKeyType() == KeyType.Enter){
+        else if (Keyboard.IsLastKeyOfType("Enter")){
             Keyboard.Clear();
             if (pos == 0) {Engine.SetMenu( new LoadMenu());}
             else if (pos == 1 ){Engine.SetMenu( new Rainbow());}

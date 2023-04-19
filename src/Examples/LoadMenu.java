@@ -28,7 +28,7 @@ public class LoadMenu extends Menu {
 
     @Override
     public void Update() {
-        if (Keyboard.getKeyValue() == "Intro"){ Engine.SetMenu( new StartMenu());}
+        if (Keyboard.IsLastKeyOfType("Enter")){ Engine.SetMenu( new StartMenu());}
         Keyboard.Clear();
     }
 }

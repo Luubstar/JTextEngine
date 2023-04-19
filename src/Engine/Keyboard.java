@@ -13,11 +13,10 @@ public class Keyboard  {
 	private static char LastChar;
 	private static KeyType LastKeyType;
 
-
 	static TerminalScreen screen;
 	static Terminal terminal;
 
-
+	
 	public static void Start() throws Exception{
 
 		terminal = new DefaultTerminalFactory().createTerminal();
@@ -29,21 +28,17 @@ public class Keyboard  {
 	public static void DetectInput() throws Exception{
 		KeyStroke keyStroke = screen.pollInput();
 		if (keyStroke != null) {
-			if (keyStroke.getKeyType() == KeyType.Character) {
-				LastChar = keyStroke.getCharacter();
-				LastKey = (int) LastChar;
-				LastKeyType = KeyType.Character;
+			if (keyStroke.getKeyType() != null) {
+				LastKeyType = keyStroke.getKeyType();
 				pos = 0;
+				if (keyStroke.getCharacter() != null){
+				LastChar = keyStroke.getCharacter();
+				LastKey = (int) LastChar;}
 				while (screen.pollInput() != null) {
 					// no hace nada, solo vacía la cola
 				}
 			}
-			else{
-				pos = 0;
-				LastChar = '\0';
-				LastKey = (int) LastChar;
-				LastKeyType = keyStroke.getKeyType();
-			}
+			else{Clear();}
 		}
 	}
 	
@@ -58,6 +53,23 @@ public class Keyboard  {
 		LastChar = '\0';
 		LastKeyType = null;
 		pos = 0;
+	}
+
+	public static KeyType KeyTypeByString(String keyString) {
+		for (KeyType keyType : KeyType.values()) {
+			if (keyType.name().equalsIgnoreCase(keyString)) {
+				return keyType;
+			}
+		}
+		return null;
+    }
+
+	public static boolean IsLastKeyOfType(String keyType){
+		return getKeyType() == KeyTypeByString(keyType);
+	}
+
+	public static boolean IsLastKeyValue(String keyValue){
+		return getKeyValue().toLowerCase().equals(keyValue.toLowerCase());
 	}
 
 

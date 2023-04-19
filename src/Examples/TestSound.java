@@ -20,15 +20,15 @@ public class TestSound extends Menu {
 
     @Override
     public void Update() {
-        if(Keyboard.getKeyValue() == "1"){
+        if(Keyboard.getKeyValue().equals("1")){
             Sound boom = Sound.fromPath("resources/Quest.wav");
             SoundEngine.playSound(boom);
         }
-        else if(Keyboard.getKeyValue() == "2"){
+        else if(Keyboard.getKeyValue().equals("2")){
             Sound boom = Sound.fromPath("resources/Quest.mp3",1);
             SoundEngine.playSound(boom);
         }
-        else if (Keyboard.getKeyValue() == "3"){Engine.SetMenu(new StartMenu());}
+        else if (Keyboard.getKeyValue().equals("3")){Engine.SetMenu(new StartMenu());}
 
         Keyboard.Clear();
     }

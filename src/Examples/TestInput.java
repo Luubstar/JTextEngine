@@ -13,7 +13,7 @@ public class TestInput extends Menu {
     
     @Override
     public void Update() {
-        if (Keyboard.getKeyCode() != 0){pantalla = Keyboard.getKeyValue() + " -> " + Keyboard.getKeyCode() + " -> " + String.valueOf(Keyboard.getKeyCharacter());}
+        if (Keyboard.getKeyType() != null ){pantalla = Keyboard.getKeyValue() + " -> " + Keyboard.getKeyCode() + " -> " + Keyboard.getKeyType();}
         Keyboard.Clear();
     }
 }
