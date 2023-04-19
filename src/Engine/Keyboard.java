@@ -1,46 +1,41 @@
 package Engine;
  
-import com.github.kwhat.jnativehook.GlobalScreen;
-import com.github.kwhat.jnativehook.NativeHookException;
-import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
-import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
-
-import com.sun.jna.platform.WindowUtils;
-import com.sun.jna.platform.unix.X11.Window;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
 
 
-public class Keyboard implements NativeKeyListener {
+public class Keyboard  {
     private static int LastKey = 0;
     public static int pos = 0;
 	private static char LastChar;
 
-	public static void Start() {
-		try {
-			GlobalScreen.registerNativeHook();
-		}
-		catch (NativeHookException ex) {
-			System.err.println("There was a problem registering the native hook.");
-			System.err.println(ex.getMessage());
+	static TerminalScreen screen;
+	static Terminal terminal;
+	public static void Start() throws Exception{
 
-			System.exit(1);
-		}
-
-		GlobalScreen.addNativeKeyListener(new Keyboard());
+		terminal = new DefaultTerminalFactory().createTerminal();
+		screen = new TerminalScreen(terminal);
+		screen.startScreen();
+		screen.setCursorPosition(null); 
 	}
 
-	public void nativeKeyPressed(NativeKeyEvent e) {
-
-        LastKey = e.getKeyCode();
-		pos = 0;
+	public static void DetectInput() throws Exception{
+		KeyStroke keyStroke = screen.pollInput();
+		if (keyStroke != null) {
+			if (keyStroke.getKeyType() == KeyType.Character) {
+				LastChar = keyStroke.getCharacter();
+				LastKey = (int) LastChar;
+				pos = 0;
+			}
+		}
 	}
-
-    public void nativeKeyTyped(NativeKeyEvent e) {
-        
-		LastChar = e.getKeyChar();
-    }
+	
 
     public static int getKeyCode(){return LastKey;}
-    public static String getKeyValue(){return NativeKeyEvent.getKeyText(LastKey);}
+    public static String getKeyValue(){return new String(new char[] {LastChar});}
 	public static char getKeyCharacter() {return LastChar;}
 	public static void Clear(){
 		LastKey = 0;

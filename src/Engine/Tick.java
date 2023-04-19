@@ -13,6 +13,8 @@ public class Tick extends Thread {
         Engine.print("\033[?25l");
         while (true){
             try {
+
+                Engine.GetInput();
                 frame = "";
                 if (Engine.GetDebugMode()){frame = AddLog(log);}
 
@@ -29,7 +31,6 @@ public class Tick extends Thread {
                     Keyboard.Clear();
                 }
 
-                Engine.GetInput();
 
                 Thread.sleep(Engine.frameTime());
 
