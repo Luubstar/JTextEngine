@@ -15,6 +15,7 @@ public class Tick extends Thread {
             try {
 
                 Engine.GetInput();
+                
                 frame = "";
                 if (Engine.GetDebugMode()){frame = AddLog(log);}
 
@@ -30,7 +31,6 @@ public class Tick extends Thread {
                 if (Keyboard.pos > 5){
                     Keyboard.Clear();
                 }
-
 
                 Thread.sleep(Engine.frameTime());
 

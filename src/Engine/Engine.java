@@ -51,8 +51,8 @@ public class Engine {
     public static void SetMenu(Menu newMenu){MenuActual = newMenu;clearConsole(); MenuActual.Start();}
     public static String Draw(){return MenuActual.Frame();}
     public static void GetInput() throws Exception{
-        MenuActual.Update();
         Keyboard.DetectInput();
+        MenuActual.Update();
     }
 
     public static void DebugSingleLog(String log){DLog = log;}
