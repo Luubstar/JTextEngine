@@ -5,6 +5,9 @@ import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 
+import com.sun.jna.platform.WindowUtils;
+import com.sun.jna.platform.unix.X11.Window;
+
 
 public class Keyboard implements NativeKeyListener {
     private static int LastKey = 0;
@@ -43,4 +46,5 @@ public class Keyboard implements NativeKeyListener {
 		LastKey = 0;
 		pos = 0;
 	}
+
 }
