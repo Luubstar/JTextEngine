@@ -18,8 +18,7 @@ public class Engine {
             updateSize();
             Profiler.Start();
             Keyboard.Start();
-            MenuActual = MenuInicial;
-            MenuActual.Start();
+            SetMenu(MenuInicial);
             Tick Ticker = new Tick();
             Ticker.start();
         }
@@ -49,7 +48,12 @@ public class Engine {
 
     public static int frameTime(){return tick;};
     public static void SetFrameTime(int ms){tick = ms;}
-    public static void SetMenu(Menu newMenu){MenuActual = newMenu;clearConsole(); MenuActual.Start();}
+    
+    public static void SetMenu(Menu newMenu){
+        MenuActual = newMenu;
+        clearConsole();
+        MenuActual.Start();
+    }
     public static String Draw(){return MenuActual.Frame();}
     public static void GetInput() throws Exception{
         Keyboard.DetectInput();

@@ -16,4 +16,5 @@ public class TestInput extends Menu {
         if (Keyboard.getKeyType() != null ){pantalla = Keyboard.getKeyValue() + " -> " + Keyboard.getKeyCode() + " -> " + Keyboard.getKeyType();}
         Keyboard.Clear();
     }
+
 }

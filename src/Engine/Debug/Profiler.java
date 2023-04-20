@@ -10,6 +10,7 @@ import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.BitmapEncoder.BitmapFormat;
 import org.knowm.xchart.PieChart;
 import org.knowm.xchart.PieChartBuilder;
+import org.knowm.xchart.style.PieStyler.LabelType;
 import org.knowm.xchart.style.Styler.ChartTheme;
 
 import Engine.Colors;
@@ -26,7 +27,7 @@ public class Profiler {
     static String title ="┃  Profiler:";
 
     static String filter = "All";
-    private static int measuresTop = 100; 
+    private static int measuresTop = 30; 
 
     public static void setProfilerMode(boolean mode){Display = mode;}
     public  static boolean getProfilerMode(){return Display;}
@@ -35,7 +36,7 @@ public class Profiler {
     public static boolean getFPSMode(){return showFPS;}
     public static String getFPS(){
         DecimalFormat formater = new DecimalFormat("#.##");
-        return "FPS: " + formater.format((float)1000/getLastData("TickTime")) + "/" + Engine.frameTime();
+        return "FPS: " + formater.format((float)1000/getLastData("TickTime")) + "/" + formater.format((float)1000/Engine.frameTime());
     }
 
     public static void Start(){
@@ -84,7 +85,7 @@ public class Profiler {
         if (f.toLowerCase().equals("all")){return ProfileData;}
         ArrayList<ProfileMeasure> FilteredData = new ArrayList<>();
         for (ProfileMeasure p: ProfileData){
-            if (p.getType().toLowerCase().equals(f)){FilteredData.add(p);}
+            if (p.getType().toLowerCase().equals(f.toLowerCase())){FilteredData.add(p);}
         }
         return FilteredData;
     }
@@ -109,24 +110,25 @@ public class Profiler {
     }
 
     public static void ExportPieChart(String filepath, String filter) throws Exception{
-            // Create Chart
-        PieChart chart = new PieChartBuilder().width(800).height(600).title("My Pie Chart").theme(ChartTheme.GGPlot2).build();
+        PieChart chart = new PieChartBuilder().width(800).height(600).title("Profilers").theme(ChartTheme.GGPlot2).build();
 
-        // Customize Chart
+
         chart.getStyler().setLegendVisible(false);
         chart.getStyler().setPlotContentSize(.7);
+        chart.getStyler().setLabelType(LabelType.NameAndPercentage);
+        chart.getStyler().setLabelsDistance(1.15);
         chart.getStyler().setStartAngleInDegrees(90);
-
-        // Series
-        chart.addSeries("Prague", 2);
-        chart.addSeries("Dresden", 4);
-        chart.addSeries("Munich", 34);
-        chart.addSeries("Hamburg", 22);
-        chart.addSeries("Berlin", 29);
+        ArrayList<ProfileMeasure> measures = getListByFilter(filter);
+        for(ProfileMeasure measure : measures){
+            chart.addSeries(measure.getTag(), measure.getLastTimeData());
+        }
 
         BitmapEncoder.saveBitmapWithDPI(chart, filepath, BitmapFormat.PNG, 300);
     }
 
+    public static void ExportPieChart(String filepath) throws Exception{
+        ExportPieChart(filepath, getFilter());
+    }
 
     public static String ProfilerToString(){
         try{

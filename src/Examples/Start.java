@@ -10,11 +10,6 @@ public class Start
       Engine.setProfilerMode(true);
       Engine.setFPSMode(true);
       Profiler.setFilter("All");
-      try {
-         Profiler.ExportPieChart("test.png", "all");
-      } catch (Exception e) {
-         // TODO: handle exception
-      }
       Engine.Start(new StartMenu());
    }
 }
