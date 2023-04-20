@@ -12,20 +12,10 @@ public class Debug {
 
     public static boolean GetDebugMode(){return DebugMode;}
     public static void SetDebugMode(boolean mode){DebugMode = mode;}
-    public static void DebugSingleLog(String log){DLog = log;}
-    public static void DebugSingleLog(String log, Colors color){DLog = color.colorizeNoSane( log);}
-    public static void DebugSingleLog(String log, int Modo){
-        String prefix = "";
-        if(Modo == DEBUGMESSAGE){prefix = "📃";}
-        else if (Modo == DEBUGOK){prefix = "✅" + Colors.GREEN;}
-        else if (Modo == DEBUGWARNING){prefix = "⚠️" + Colors.YELLOW;}
-        else if (Modo == DEBUGERROR){prefix = "❌" + Colors.RED;}
-        DLog = prefix + log;
-    }
 
-    public static void DebugLog(String log){DLog += "\n " +log;}
-    public static void DebugLog(String log, Colors color){DLog +=color.colorizeNoSane("\n " + log);}
-    public static void DebugLog(String log, int Modo){ 
+    public static void Log(String log){DLog += "\n " +log;}
+    public static void Log(String log, Colors color){DLog +=color.colorizeNoSane("\n " + log);}
+    public static void Log(String log, int Modo){ 
         String prefix = "";
         if(Modo == DEBUGMESSAGE){prefix = "✉ ";}
         else if (Modo == DEBUGOK){prefix = Colors.GREEN + "✔ ";}
@@ -33,6 +23,11 @@ public class Debug {
         else if (Modo == DEBUGERROR){prefix = Colors.RED + "✘ ";}
         DLog += "\n " + prefix + log;
     }
+
+    public static void LogOK(String log){Log(log,DEBUGOK);}
+    public static void LogError(String log){Log(log,DEBUGERROR);}
+    public static void LogWarning(String log){Log(log,DEBUGWARNING);}
+    public static void LogMessage(String log){Log(log,DEBUGMESSAGE);}
 
     public static void ClearLog(){DLog = "";}
     public static String GetLog(){return DLog;}

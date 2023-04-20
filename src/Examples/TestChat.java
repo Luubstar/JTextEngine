@@ -39,7 +39,7 @@ public class TestChat extends Menu{
             client.Send("["+name+"] Se ha unido a la sala");
             
         }
-        catch (Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);}
+        catch (Exception e){Debug.LogError(e.getMessage());}
 
     }
 
@@ -60,7 +60,7 @@ public class TestChat extends Menu{
             }
             Keyboard.Clear();
         }
-        catch (Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);}
+        catch (Exception e){Debug.LogError(e.getMessage());}
     }
 
     @Override

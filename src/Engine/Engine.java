@@ -22,7 +22,7 @@ public class Engine {
             Tick Ticker = new Tick();
             Ticker.start();
         }
-        catch(Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);}
+        catch(Exception e){Debug.LogError(e.getMessage());}
     }
 
     public static void print(String text){System.out.print(text + "\n");}
@@ -34,7 +34,7 @@ public class Engine {
             else
                 new ProcessBuilder("clear").inheritIO().start().waitFor();
 
-        } catch (Exception e) {Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);;}
+        } catch (Exception e) {Debug.LogError(e.getMessage());}
     }
 
     public static void SetDebugMode(boolean mode){Debug.SetDebugMode(mode);}
@@ -60,7 +60,7 @@ public class Engine {
             }
             return name.substring(lastIndexOf);
         }
-        catch(Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);; return "";}
+        catch(Exception e){Debug.LogError(e.getMessage()); return "";}
     }
 
     public static String getSize(){
@@ -72,7 +72,7 @@ public class Engine {
             } else if (os.contains("win")) {
                 command = new String[] { "cmd.exe", "/c", "mode con | findstr /C:\"Columns\"" };
             } else {
-                Debug.DebugLog("No se pudo determinar el sistema operativo.");
+                Debug.LogWarning("No se pudo determinar el sistema operativo.");
                 return "";
             }
 
@@ -91,7 +91,7 @@ public class Engine {
             String[] result = output.toString().split(" ");
             return result[1] + "x" + result[0];
         }
-        catch(Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);; return "";}
+        catch(Exception e){Debug.LogError(e.getMessage()); return "";}
     }
 
     public static int getWidth(){return WIDTH;}

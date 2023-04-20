@@ -34,7 +34,7 @@ public class Tick extends Thread {
 
                 Thread.sleep(Engine.frameTime());
 
-            } catch (Exception e) {Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);;}
+            } catch (Exception e) {Debug.LogError(e.getMessage());}
         }
     }
 
@@ -65,7 +65,7 @@ public class Tick extends Thread {
             }
             return logstring;
         }
-        catch(Exception e){Debug.DebugSingleLog(e.getMessage() + " " + e.getCause(), Debug.DEBUGERROR);return "";}
+        catch(Exception e){Debug.Log(e.getMessage() + " " + e.getCause(), Debug.DEBUGERROR);return "";}
     }
 
 
