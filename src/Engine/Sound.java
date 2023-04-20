@@ -65,7 +65,6 @@ public class Sound extends Thread {
             else if(extension.equals(".mp3")){
                 FileInputStream IS = new FileInputStream(soundFile);
                 player = new Player(IS);
-                player.setVolume(volume);
                 this.volume = mapToDecibels(volume);
                 this.file = soundFile;
             }
@@ -105,7 +104,6 @@ public class Sound extends Thread {
                 else{throw new Exception("Float value out of bounds");}
             }
             else if (extension.equals(".mp3")){
-                player.setVolume(mapToDecibels(volume));
                 this.volume = mapToDecibels(volume);
             }
         }

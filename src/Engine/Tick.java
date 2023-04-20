@@ -1,5 +1,6 @@
 package Engine;
 
+
 public class Tick extends Thread {
     String frame = "";
     String log = "";
@@ -9,11 +10,12 @@ public class Tick extends Thread {
         Engine.print("\033[?25l");
         while (true){
             try {
-
+                Profiler.StartMeasure("TickTime");
                 Engine.GetInput();
                 
                 frame = "";
-                if (Engine.GetDebugMode()){frame = Debug.LogToString();}
+                if (Profiler.getProfilerMode()){frame = Profiler.ProfilerToString();}
+                if (Engine.GetDebugMode()){frame += "\n"+ Debug.LogToString();}
 
                 frame += Engine.Draw();
                 Engine.clearConsole();
@@ -28,6 +30,7 @@ public class Tick extends Thread {
 
                 Engine.CheckIfResized();
                 Thread.sleep(Engine.frameTime());
+                Profiler.EndMeasure("TickTime");
 
             } catch (Exception e) {Debug.LogError(e.getMessage());}
         }

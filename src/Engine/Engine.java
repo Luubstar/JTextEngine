@@ -13,7 +13,7 @@ public class Engine {
     public static void Start(Menu MenuInicial){
         try{
             updateSize();
-
+            Profiler.Start();
             Keyboard.Start();
             MenuActual = MenuInicial;
             MenuActual.Start();
@@ -37,6 +37,9 @@ public class Engine {
 
     public static void SetDebugMode(boolean mode){Debug.SetDebugMode(mode);}
     public static boolean GetDebugMode(){return Debug.GetDebugMode();}
+
+    public static void setProfilerMode(boolean mode){Profiler.setProfilerMode(mode);}
+    public static boolean getProfilerMode(){return Profiler.getProfilerMode();}
 
     public static int frameTime(){return tick;};
     public static void SetFrameTime(int ms){tick = ms;}

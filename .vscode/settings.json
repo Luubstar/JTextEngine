@@ -1,8 +1,12 @@
 {
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "/home/nbr/Descargas/jansi-1.18.jar",
-        "/home/nbr/Descargas/jlayer-1.0.1.jar"
-    ],
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "/home/nbr/Descargas/jansi-1.18.jar"
+        ],
+        "exclude": [
+            "lib/jl1.0.1.jar"
+        ]
+    },
     "docwriter.style": "Javadoc"
 }
