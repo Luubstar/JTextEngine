@@ -93,6 +93,15 @@ public class Engine {
     public static int getWidth(){return WIDTH;}
     public static int getHeight(){return HEIGHT;}
 
+    public static void CheckIfResized(){
+        String[] size = getSize().split("x");
+        if (Integer.parseInt(size[0]) != WIDTH || Integer.parseInt(size[1]) != HEIGHT){
+            updateSize();
+            MenuActual.OnRescale();
+        }
+    }
+
+
     public static void updateSize(){
         String[] size = getSize().split("x");
         WIDTH = Integer.parseInt(size[0]);

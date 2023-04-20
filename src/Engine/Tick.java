@@ -30,6 +30,7 @@ public class Tick extends Thread {
                     Keyboard.Clear();
                 }
 
+                Engine.CheckIfResized();
                 Thread.sleep(Engine.frameTime());
 
             } catch (Exception e) {Debug.LogError(e.getMessage());}
