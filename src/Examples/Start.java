@@ -8,11 +8,10 @@ public class Start
       Engine.SetDebugMode(true);
       Engine.SetFrameTime(20);
       Engine.setProfilerMode(true);
+      Engine.setFPSMode(true);
       Profiler.setFilter("All");
-      Profiler.setFPSMode(true);
       try {
-         
-      Profiler.ExportPieChart("test.png", "all");
+         Profiler.ExportPieChart("test.png", "all");
       } catch (Exception e) {
          // TODO: handle exception
       }

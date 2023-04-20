@@ -41,6 +41,9 @@ public class Engine {
     public static void SetDebugMode(boolean mode){Debug.SetDebugMode(mode);}
     public static boolean GetDebugMode(){return Debug.GetDebugMode();}
 
+    public static void setFPSMode(boolean mode){Profiler.setFPSMode(mode);}
+    public static boolean getFPSMode(){return Profiler.getFPSMode();}
+
     public static void setProfilerMode(boolean mode){Profiler.setProfilerMode(mode);}
     public static boolean getProfilerMode(){return Profiler.getProfilerMode();}
 
