@@ -1,6 +1,9 @@
-package Engine;
+package Engine.Debug;
 
 import java.util.ArrayList;
+
+import Engine.Colors;
+import Engine.Engine;
 
 public class Profiler {
     private static ArrayList<ProfileMeasure> ProfileData = new ArrayList<>();
@@ -68,7 +71,6 @@ public class Profiler {
                 for (int i = 0; i < ProfileData.size(); i++ ){
                     ProfileMeasure newlog = logs.get(i);
                     
-                    Debug.LogError(newlog.getLastTimeDataString());
                     String ColoredMessage = newlog.getColor().colorize(newlog.getTag() + " -> " + newlog.getLastTimeDataString() + " ms");
                     String message  = Colors.clearANSI(ColoredMessage);
                     String Color = newlog.getColor().toString();

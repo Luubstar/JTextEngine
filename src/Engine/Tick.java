@@ -1,5 +1,7 @@
 package Engine;
 
+import Engine.Debug.Debug;
+import Engine.Debug.Profiler;
 
 public class Tick extends Thread {
     String frame = "";

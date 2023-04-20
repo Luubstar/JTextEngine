@@ -1,5 +1,7 @@
 package Engine;
 
+import Engine.Debug.Debug;
+
 public class SoundEngine {
 
     public static float GeneralVolume = 0.75f;

@@ -1,9 +1,13 @@
-package Engine;
+package Engine.Debug;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
+
+import Engine.Colors;
+import Engine.Engine;
+import Engine.Log;
 
 
 public class Debug {

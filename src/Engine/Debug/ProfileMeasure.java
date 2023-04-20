@@ -1,6 +1,8 @@
-package Engine;
+package Engine.Debug;
 
 import java.text.DecimalFormat;
+
+import Engine.Colors;
 
 public class ProfileMeasure {
     private String Tag;

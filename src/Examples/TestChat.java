@@ -5,7 +5,7 @@ import java.util.Scanner;
 import Engine.Keyboard;
 import Engine.Menu;
 import Engine.NetworkClient;
-import Engine.Debug;
+import Engine.Debug.Debug;
 
 public class TestChat extends Menu{
 
