@@ -7,8 +7,6 @@ import java.io.InputStreamReader;
 public class Engine {
     private static int tick = 50;
     private static Menu MenuActual;
-
-
     private static int WIDTH;
     private static int HEIGHT;
 
@@ -48,8 +46,6 @@ public class Engine {
         Keyboard.DetectInput();
         MenuActual.Update();
     }
-
-    
     
     public static String getFileExtension(File file) {
         try{

@@ -20,9 +20,7 @@ public class Tick extends Thread {
                 if (Engine.GetDebugMode()){frame = AddLog(log);}
 
                 frame += Engine.Draw();
-
                 Engine.clearConsole();
-                System.out.flush();
 
                 Engine.print(frame);
                 System.out.flush();
