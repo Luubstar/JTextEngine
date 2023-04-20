@@ -50,14 +50,14 @@ public class Debug {
     public static ArrayList<Log> GetLog(){return DLog;}
     public static void SetLog(ArrayList<Log> List){DLog = List;}
 
-    public static void ExportLogs(String filename) throws Exception{
+    public static void ExportLogs(String filepath) throws Exception{
         
-        File archivo = new File(filename);
+        File archivo = new File(filepath);
 
         if (!archivo.exists()) {
             archivo.createNewFile();
         }
-        else{LogWarning(filename + " already exists. Overwriting...");}
+        else{LogWarning(filepath + " already exists. Overwriting...");}
 
         FileWriter fw = new FileWriter(archivo);
         BufferedWriter bw = new BufferedWriter(fw);

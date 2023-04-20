@@ -1,6 +1,15 @@
 package Engine.Debug;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
+
+import org.knowm.xchart.BitmapEncoder;
+import org.knowm.xchart.BitmapEncoder.BitmapFormat;
+import org.knowm.xchart.PieChart;
+import org.knowm.xchart.PieChartBuilder;
+import org.knowm.xchart.style.Styler.ChartTheme;
 
 import Engine.Colors;
 import Engine.Engine;
@@ -74,6 +83,45 @@ public class Profiler {
         }
         return FilteredData;
     }
+
+    public static void ProfilerToFile(String filepath, String filter) throws Exception{
+        File file = new File(filepath);
+
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+
+        String data = "";
+
+        for (ProfileMeasure measure: getListByFilter(filter)){
+            data += "[" + measure.getType() + ":" + measure.getTag() + "] -> " + measure.getLastTimeDataString() + "\n";
+        }
+
+        bw.write(data);
+        bw.newLine();
+
+        bw.close();
+        fw.close();
+    }
+
+    public static void ExportPieChart(String filepath, String filter) throws Exception{
+            // Create Chart
+        PieChart chart = new PieChartBuilder().width(800).height(600).title("My Pie Chart").theme(ChartTheme.GGPlot2).build();
+
+        // Customize Chart
+        chart.getStyler().setLegendVisible(false);
+        chart.getStyler().setPlotContentSize(.7);
+        chart.getStyler().setStartAngleInDegrees(90);
+
+        // Series
+        chart.addSeries("Prague", 2);
+        chart.addSeries("Dresden", 4);
+        chart.addSeries("Munich", 34);
+        chart.addSeries("Hamburg", 22);
+        chart.addSeries("Berlin", 29);
+
+        BitmapEncoder.saveBitmapWithDPI(chart, filepath, BitmapFormat.PNG, 300);
+    }
+
 
     public static String ProfilerToString(){
         try{
