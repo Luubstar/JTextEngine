@@ -34,14 +34,14 @@ public class Tick extends Thread {
 
                 Thread.sleep(Engine.frameTime());
 
-            } catch (Exception e) {Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);;}
+            } catch (Exception e) {Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);;}
         }
     }
 
     private String AddLog(String log){
         try{
             String logstring = "";
-            log = Engine.GetLog();
+            log = Debug.GetLog();
             if (log != ""){
                 logstring += "┏" + block.repeat(Engine.getWidth() -2) + "┓";
                 logstring +=  title + space.repeat(Engine.getWidth() - title.length() - 1) + verticalBlock;
@@ -65,7 +65,7 @@ public class Tick extends Thread {
             }
             return logstring;
         }
-        catch(Exception e){Engine.DebugSingleLog(e.getMessage() + " " + e.getCause(), Engine.DEBUGERROR);return "";}
+        catch(Exception e){Debug.DebugSingleLog(e.getMessage() + " " + e.getCause(), Debug.DEBUGERROR);return "";}
     }
 
 

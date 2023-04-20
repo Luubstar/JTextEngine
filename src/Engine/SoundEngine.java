@@ -18,7 +18,7 @@ public class SoundEngine {
             Sonido.clip.close();
             Sonido.AudioIS.close();
         }
-        catch(Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);;}
+        catch(Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);;}
     }
 
     /**@param newvol (min 0, max 1)*/
@@ -27,7 +27,7 @@ public class SoundEngine {
             if (!(NewVol > 1 && NewVol < 0)){GeneralVolume = NewVol;}
             else{throw new Exception("Float value out of bounds");}
         }
-        catch(Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);;}
+        catch(Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);;}
     }
     
 

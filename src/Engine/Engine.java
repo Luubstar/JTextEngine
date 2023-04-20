@@ -7,13 +7,7 @@ import java.io.InputStreamReader;
 public class Engine {
     private static int tick = 50;
     private static Menu MenuActual;
-    private static String DLog = "";
-    private static boolean DebugMode = false;
 
-    public static int DEBUGWARNING = 0;
-    public static int DEBUGERROR = 1;
-    public static int DEBUGMESSAGE = 2;
-    public static int DEBUGOK = 3;
 
     private static int WIDTH;
     private static int HEIGHT;
@@ -28,7 +22,7 @@ public class Engine {
             Tick Ticker = new Tick();
             Ticker.start();
         }
-        catch(Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);}
+        catch(Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);}
     }
 
     public static void print(String text){System.out.print(text + "\n");}
@@ -40,11 +34,11 @@ public class Engine {
             else
                 new ProcessBuilder("clear").inheritIO().start().waitFor();
 
-        } catch (Exception e) {Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);;}
+        } catch (Exception e) {Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);;}
     }
 
-    public static void SetDebugMode(boolean mode){DebugMode = mode;}
-    public static boolean GetDebugMode(){return DebugMode;}
+    public static void SetDebugMode(boolean mode){Debug.SetDebugMode(mode);}
+    public static boolean GetDebugMode(){return Debug.GetDebugMode();}
 
     public static int frameTime(){return tick;};
     public static void SetFrameTime(int ms){tick = ms;}
@@ -55,30 +49,7 @@ public class Engine {
         MenuActual.Update();
     }
 
-    public static void DebugSingleLog(String log){DLog = log;}
-    public static void DebugSingleLog(String log, Colors color){DLog = color.colorizeNoSane( log);}
-    public static void DebugSingleLog(String log, int Modo){
-        String prefix = "";
-        if(Modo == DEBUGMESSAGE){prefix = "📃";}
-        else if (Modo == DEBUGOK){prefix = "✅" + Colors.GREEN;}
-        else if (Modo == DEBUGWARNING){prefix = "⚠️" + Colors.YELLOW;}
-        else if (Modo == DEBUGERROR){prefix = "❌" + Colors.RED;}
-        DLog = prefix + log;
-    }
-
-    public static void DebugLog(String log){DLog += "\n " +log;}
-    public static void DebugLog(String log, Colors color){DLog +=color.colorizeNoSane("\n " + log);}
-    public static void DebugLog(String log, int Modo){ 
-        String prefix = "";
-        if(Modo == DEBUGMESSAGE){prefix = "✉ ";}
-        else if (Modo == DEBUGOK){prefix = Colors.GREEN + "✔ ";}
-        else if (Modo == DEBUGWARNING){prefix = Colors.YELLOW + "⚠ ";}
-        else if (Modo == DEBUGERROR){prefix = Colors.RED + "✘ ";}
-        DLog += "\n " + prefix + log;
-    }
-
-    public static void ClearLog(){DLog = "";}
-    public static String GetLog(){return DLog;}
+    
     
     public static String getFileExtension(File file) {
         try{
@@ -89,7 +60,7 @@ public class Engine {
             }
             return name.substring(lastIndexOf);
         }
-        catch(Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);; return "";}
+        catch(Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);; return "";}
     }
 
     public static String getSize(){
@@ -101,7 +72,7 @@ public class Engine {
             } else if (os.contains("win")) {
                 command = new String[] { "cmd.exe", "/c", "mode con | findstr /C:\"Columns\"" };
             } else {
-                Engine.DebugLog("No se pudo determinar el sistema operativo.");
+                Debug.DebugLog("No se pudo determinar el sistema operativo.");
                 return "";
             }
 
@@ -120,7 +91,7 @@ public class Engine {
             String[] result = output.toString().split(" ");
             return result[1] + "x" + result[0];
         }
-        catch(Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);; return "";}
+        catch(Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);; return "";}
     }
 
     public static int getWidth(){return WIDTH;}

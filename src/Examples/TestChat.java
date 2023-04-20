@@ -2,10 +2,10 @@ package Examples;
 
 import java.util.Scanner;
 
-import Engine.Engine;
 import Engine.Keyboard;
 import Engine.Menu;
 import Engine.NetworkClient;
+import Engine.Debug;
 
 public class TestChat extends Menu{
 
@@ -39,7 +39,7 @@ public class TestChat extends Menu{
             client.Send("["+name+"] Se ha unido a la sala");
             
         }
-        catch (Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);}
+        catch (Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);}
 
     }
 
@@ -60,7 +60,7 @@ public class TestChat extends Menu{
             }
             Keyboard.Clear();
         }
-        catch (Exception e){Engine.DebugLog(e.getMessage(), Engine.DEBUGERROR);}
+        catch (Exception e){Debug.DebugLog(e.getMessage(), Debug.DEBUGERROR);}
     }
 
     @Override
