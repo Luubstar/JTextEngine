@@ -15,26 +15,33 @@ public class Profiler {
     static String title ="┃  Debug Log:";
 
     static String filter = "All";
-    private static int measuresTop = 10; 
+    private static int measuresTop = 100; 
 
     public static void setProfilerMode(boolean mode){Display = mode;}
     public  static boolean getProfilerMode(){return Display;}
 
     public static void Start(){
-        ProfileData.add(new ProfileMeasure("TickTime", "Tick" ,Colors.Yellow));
+        ProfileData.add(new ProfileMeasure("TickTime", "General" ,Colors.Yellow));
+        ProfileData.add(new ProfileMeasure("Profiler", "Advance" ,Colors.Green));
+        ProfileData.add(new ProfileMeasure("DebugLogger", "Advance" ,Colors.Red));
+        ProfileData.add(new ProfileMeasure("Render", "Advance" ,Colors.Blue));
+        ProfileData.add(new ProfileMeasure("WaitTime", "Advance" ,Colors.Yellow));
+        ProfileData.add(new ProfileMeasure("Other", "Advance" ,Colors.Cyan));
     }
 
     public static void AddProfile(ProfileMeasure data){ProfileData.add(data);}
     public static void DeleteProfiles(){ProfileData.clear();}
-    public static void ResetProfiles(){}
+    public static void ResetProfiles(){
+        for (ProfileMeasure measure: ProfileData){measure.reset();}
+    }
     public static void DeleteProfile(ProfileMeasure data){ProfileData.remove(data);}
 
 
     public static void StartMeasure(String tag){
-        findByTag(tag).StartMeasure();
+        if(Display){findByTag(tag).StartMeasure();}
     }
     public static void EndMeasure(String tag){
-        findByTag(tag).EndMeasure();
+        if(Display){findByTag(tag).EndMeasure();}
     }
 
     public static void SetMeasuresUntilData(int measures){measuresTop = measures;}
@@ -57,10 +64,10 @@ public class Profiler {
         return null;
     }
 
-    public static void setFilter(String f){filter = filter.toLowerCase();}
+    public static void setFilter(String f){filter = f.toLowerCase();}
     public static String getFilter(){return filter;}
     public static ArrayList<ProfileMeasure> getListByFilter(String f){
-        if (f == "All"){return ProfileData;}
+        if (f.toLowerCase().equals("all")){return ProfileData;}
         ArrayList<ProfileMeasure> FilteredData = new ArrayList<>();
         for (ProfileMeasure p: ProfileData){
             if (p.getType().toLowerCase().equals(f)){FilteredData.add(p);}
@@ -74,12 +81,12 @@ public class Profiler {
             if (Engine.getWidth() == 0 || Engine.getHeight() == 0){
                 Engine.updateSize();
             }
-            if (getListByFilter(getFilter()).size() > 0){
+            if (getListByFilter(filter).size() > 0){
                 logstring += "┏" + block.repeat(Engine.getWidth() -2) + "┓";
                 logstring +=  title + space.repeat(Engine.getWidth() - title.length() - 1) + verticalBlock;
-                ArrayList<ProfileMeasure> logs = getListByFilter(getFilter());
+                ArrayList<ProfileMeasure> logs = getListByFilter(filter);
 
-                for (int i = 0; i < getListByFilter(getFilter()).size(); i++ ){
+                for (int i = 0; i < getListByFilter(filter).size(); i++ ){
                     ProfileMeasure newlog = logs.get(i);
                     
                     String ColoredMessage = newlog.getColor().colorize(newlog.getTag() + " -> " + newlog.getLastTimeDataString() + " ms");

@@ -30,10 +30,10 @@ public class ProfileMeasure {
     public void StartMeasure(){timeStart = System.currentTimeMillis();}
     public void EndMeasure(){
         timeEnd = System.currentTimeMillis();
-        timeAcummulated = timeEnd-timeStart;
+        timeAcummulated += timeEnd-timeStart;
         measures += 1;
         if (measures >= Profiler.GetMeasuresUntilData()){
-            LastTimeData = ((float) timeAcummulated)/measures;
+            LastTimeData = ((float) timeAcummulated)/(float) measures;
             measures = 0;
             timeAcummulated = 0;
         }
@@ -43,10 +43,16 @@ public class ProfileMeasure {
         return LastTimeData;}
         
     public String getLastTimeDataString(){
-        DecimalFormat formater = new DecimalFormat("#.####");
+        DecimalFormat formater = new DecimalFormat("######.####");
         return formater.format(LastTimeData);
     }
 
     public String getTag(){return Tag;}
     public Colors getColor(){return Color;}
+
+    public void reset(){
+        timeAcummulated = 0;
+        measures = 0;
+        LastTimeData = 0;
+    }
 }
