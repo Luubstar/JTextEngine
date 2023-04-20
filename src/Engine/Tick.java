@@ -36,6 +36,7 @@ public class Tick extends Thread {
 
                 Profiler.StartMeasure("Profiler");
                 if (Profiler.getProfilerMode()){frame = Profiler.ProfilerToString();}
+                if (Profiler.getFPSMode()){frame += Profiler.getFPS();}
                 Profiler.EndMeasure("Profiler");
                 
                 Profiler.StartMeasure("DebugLogger");

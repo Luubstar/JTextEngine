@@ -9,6 +9,7 @@ public class Start
       Engine.SetFrameTime(20);
       Engine.setProfilerMode(true);
       Profiler.setFilter("All");
+      Profiler.setFPSMode(true);
       try {
          
       Profiler.ExportPieChart("test.png", "all");

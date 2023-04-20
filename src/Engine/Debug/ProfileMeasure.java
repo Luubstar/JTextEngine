@@ -14,7 +14,7 @@ public class ProfileMeasure {
     private long timeAcummulated;
     private int measures;
 
-    private float LastTimeData;
+    private float LastTimeData = 1;
     
     public ProfileMeasure(String T, String type, Colors c){
         Tag = T;
@@ -43,7 +43,7 @@ public class ProfileMeasure {
         return LastTimeData;}
         
     public String getLastTimeDataString(){
-        DecimalFormat formater = new DecimalFormat("######.####");
+        DecimalFormat formater = new DecimalFormat("#.####");
         return formater.format(LastTimeData);
     }
 

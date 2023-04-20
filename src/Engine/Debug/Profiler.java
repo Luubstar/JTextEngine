@@ -3,6 +3,7 @@ package Engine.Debug;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import org.knowm.xchart.BitmapEncoder;
@@ -18,16 +19,24 @@ public class Profiler {
     private static ArrayList<ProfileMeasure> ProfileData = new ArrayList<>();
 
     private static boolean Display;
+    private static boolean showFPS;
     static String block = "━";
     static String verticalBlock = "┃";
     static String space = " ";
-    static String title ="┃  Debug Log:";
+    static String title ="┃  Profiler:";
 
     static String filter = "All";
     private static int measuresTop = 100; 
 
     public static void setProfilerMode(boolean mode){Display = mode;}
     public  static boolean getProfilerMode(){return Display;}
+
+    public static void setFPSMode(boolean mode){showFPS = mode;}
+    public static boolean getFPSMode(){return showFPS;}
+    public static String getFPS(){
+        DecimalFormat formater = new DecimalFormat("#.##");
+        return "FPS: " + formater.format((float)1000/getLastData("TickTime")) + "/" + Engine.frameTime();
+    }
 
     public static void Start(){
         ProfileData.add(new ProfileMeasure("TickTime", "General" ,Colors.Yellow));
@@ -46,12 +55,8 @@ public class Profiler {
     public static void DeleteProfile(ProfileMeasure data){ProfileData.remove(data);}
 
 
-    public static void StartMeasure(String tag){
-        if(Display){findByTag(tag).StartMeasure();}
-    }
-    public static void EndMeasure(String tag){
-        if(Display){findByTag(tag).EndMeasure();}
-    }
+    public static void StartMeasure(String tag){findByTag(tag).StartMeasure();}
+    public static void EndMeasure(String tag){findByTag(tag).EndMeasure();}
 
     public static void SetMeasuresUntilData(int measures){measuresTop = measures;}
     public static int GetMeasuresUntilData(){return measuresTop;}
