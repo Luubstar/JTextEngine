@@ -123,4 +123,11 @@ public final class Colors {
 		}
 		return input;
 	}
+
+	public static String getColor(String input){
+		for (String cadena: ListOfColors){
+			if (input.contains(cadena)){return cadena;}
+		}
+		return "";
+	}
 }

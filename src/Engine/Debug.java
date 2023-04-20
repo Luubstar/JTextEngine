@@ -107,18 +107,20 @@ public class Debug {
                 for (int i = 0; i < GetLog().size(); i++ ){
                     Log newlog = logs.get(i);
                     
-                    String message  = Colors.clearANSI(newlog.getMessage() + newlog.getQuantityString())  ;
+                    String ColoredMessage = newlog.getMessage() + newlog.getQuantityString();
+                    String message  = Colors.clearANSI(ColoredMessage);
+                    String Color = Colors.getColor(ColoredMessage);
                     
                     if (message.length() > Engine.getWidth()-2){
                         String[] SplitedLogs = Engine.splitString(message, Engine.getWidth() -7);
                         for (int a = 0; a < SplitedLogs.length; a++){
                             String splitedlog = SplitedLogs[a];
                             message  = Colors.clearANSI(splitedlog);
-                            if (a == 0){logstring += verticalBlock + "  " + splitedlog + Colors.SANE+ space.repeat(Engine.getWidth() - 4 - message.length()) + verticalBlock;}    
-                            else{logstring += verticalBlock + "     " + splitedlog + Colors.SANE+ space.repeat(Engine.getWidth() - 7 - message.length()) + verticalBlock;}
+                            if (a == 0){logstring += verticalBlock + "  " + Color + message + Colors.SANE+ space.repeat(Engine.getWidth() - 4 - message.length()) + verticalBlock;}    
+                            else{logstring += verticalBlock + "  " + Color + message + Colors.SANE+ space.repeat(Engine.getWidth() - 4 - message.length()) + verticalBlock;}
                         }
                     }
-                    else{logstring += verticalBlock + "  " + message + Colors.SANE+ space.repeat(Engine.getWidth() - 4 - message.length()) + verticalBlock;}}
+                    else{logstring += verticalBlock + "  " + ColoredMessage + Colors.SANE+ space.repeat(Engine.getWidth() - 4 - message.length()) + verticalBlock;}}
                 logstring += "\n┗" + block.repeat(Engine.getWidth() -2) + "┛";
             }
             return logstring;
