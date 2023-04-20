@@ -14,13 +14,14 @@ public class Profiler {
     static String space = " ";
     static String title ="┃  Debug Log:";
 
+    static String filter = "All";
+    private static int measuresTop = 10; 
+
     public static void setProfilerMode(boolean mode){Display = mode;}
     public  static boolean getProfilerMode(){return Display;}
 
-    private static int measuresTop = 10; 
-
     public static void Start(){
-        ProfileData.add(new ProfileMeasure("TickTime", Colors.Yellow));
+        ProfileData.add(new ProfileMeasure("TickTime", "Tick" ,Colors.Yellow));
     }
 
     public static void AddProfile(ProfileMeasure data){ProfileData.add(data);}
@@ -49,12 +50,22 @@ public class Profiler {
         return data;
     }
 
-
     public static ProfileMeasure findByTag(String tag){
         for (ProfileMeasure Measure:ProfileData){
             if (Measure.getTag().toLowerCase().equals(tag.toLowerCase())){return Measure;}
         }
         return null;
+    }
+
+    public static void setFilter(String f){filter = filter.toLowerCase();}
+    public static String getFilter(){return filter;}
+    public static ArrayList<ProfileMeasure> getListByFilter(String f){
+        if (f == "All"){return ProfileData;}
+        ArrayList<ProfileMeasure> FilteredData = new ArrayList<>();
+        for (ProfileMeasure p: ProfileData){
+            if (p.getType().toLowerCase().equals(f)){FilteredData.add(p);}
+        }
+        return FilteredData;
     }
 
     public static String ProfilerToString(){
@@ -63,12 +74,12 @@ public class Profiler {
             if (Engine.getWidth() == 0 || Engine.getHeight() == 0){
                 Engine.updateSize();
             }
-            if (ProfileData.size() > 0){
+            if (getListByFilter(getFilter()).size() > 0){
                 logstring += "┏" + block.repeat(Engine.getWidth() -2) + "┓";
                 logstring +=  title + space.repeat(Engine.getWidth() - title.length() - 1) + verticalBlock;
-                ArrayList<ProfileMeasure> logs = ProfileData;
+                ArrayList<ProfileMeasure> logs = getListByFilter(getFilter());
 
-                for (int i = 0; i < ProfileData.size(); i++ ){
+                for (int i = 0; i < getListByFilter(getFilter()).size(); i++ ){
                     ProfileMeasure newlog = logs.get(i);
                     
                     String ColoredMessage = newlog.getColor().colorize(newlog.getTag() + " -> " + newlog.getLastTimeDataString() + " ms");

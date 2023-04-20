@@ -6,6 +6,7 @@ import Engine.Colors;
 
 public class ProfileMeasure {
     private String Tag;
+    private String Type;
     private Colors Color;
 
     private long timeStart;
@@ -15,12 +16,16 @@ public class ProfileMeasure {
 
     private float LastTimeData;
     
-    public ProfileMeasure(String T, Colors c){
+    public ProfileMeasure(String T, String type, Colors c){
         Tag = T;
+        Type = type;
         Color = c;
     }
 
-    public ProfileMeasure(String T){this(T, Colors.White);}
+    public ProfileMeasure(String T){this(T, "General", Colors.White);}
+
+    public String getType(){return Type;}
+    public void setType(String  type){Type = type;}
 
     public void StartMeasure(){timeStart = System.currentTimeMillis();}
     public void EndMeasure(){
