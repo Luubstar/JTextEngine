@@ -9,7 +9,7 @@ import Engine.Debug.Debug;
 
 public class TestChat extends Menu{
 
-    private String name = "Test";
+    private String name = "ERROR";
     private String mensajes = "";
     private String frame;
     private String futureMessage = "";
@@ -22,16 +22,10 @@ public class TestChat extends Menu{
         try{
             
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Pulsa una tecla para continuar ");
-            IP = scanner.nextLine();
 
-            System.out.println("Introduzca la dirección IP: ");
-            IP = scanner.nextLine();
-            System.out.println("Introduzca el puerto: ");
-            port = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println("Introduzca su nombre de usuario: ");
-            name = scanner.nextLine();
+            IP = Keyboard.Scanner("Introduzca la dirección IP: ");
+            port = Integer.parseInt(Keyboard.Scanner("Introduzca el puerto: "));
+            name = Keyboard.Scanner("Introduzca su nombre de usuario: ");
 
             scanner.close();
             client = new NetworkClient(IP, port);
@@ -51,13 +45,16 @@ public class TestChat extends Menu{
                 mensajes += "\n" + data;
             }
 
-            if (Keyboard.IsLastKeyOfType("Character")){futureMessage += Keyboard.getKeyValue();}
+            Debug.LogMessage(Keyboard.getKeyType() + " " + Keyboard.getKeyValue());
+
+            if (Keyboard.IsLastKeyOfType("Character") && Keyboard.getKeyCharacter() != Keyboard.ESCAPECHAR){futureMessage += Keyboard.getKeyValue();}
             else if (Keyboard.IsLastKeyOfType("Backspace") && futureMessage.length() > 0){futureMessage = futureMessage.substring(0,futureMessage.length()-1);}
             else if (Keyboard.IsLastKeyOfType("Enter")){
                 System.out.print("Enviando");
                 client.Send("["+name+"] "+ futureMessage);
                 futureMessage = "";
             }
+
             Keyboard.Clear();
         }
         catch (Exception e){Debug.LogError(e.getMessage());}
