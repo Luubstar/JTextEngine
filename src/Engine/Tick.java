@@ -7,6 +7,8 @@ public class Tick extends Thread {
     String frame = "";
     String log = "";
 
+    String lastFrame = "";
+
     long startTime;
     long endTime;
     long elapsed;
@@ -40,16 +42,19 @@ public class Tick extends Thread {
                 Profiler.EndMeasure("Profiler");
                 
                 Profiler.StartMeasure("DebugLogger");
-                if (Engine.GetDebugMode()){frame += "\n"+ Debug.LogToString();}
+                if (Engine.GetDebugMode()){
+                    frame += "\n"+ Debug.LogToString();}
                 Profiler.EndMeasure("DebugLogger");
 
                 
                 Profiler.StartMeasure("Render");
                 frame += Engine.Draw();
-                Engine.clearConsole();
+                if  (frame != lastFrame){
+                    Engine.clearConsole();
 
-                Engine.print(frame);
-                System.out.flush();
+                    Engine.print(frame);
+                    System.out.flush();
+                }
                 Profiler.EndMeasure("Render");
 
                 endTime = System.currentTimeMillis();
