@@ -6,7 +6,6 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
-import Engine.Debug.Debug;
 
 
 public class Keyboard  {
@@ -32,7 +31,6 @@ public class Keyboard  {
 	public static void DetectInput() throws Exception{
 		KeyStroke keyStroke = screen.pollInput();
 
-		Debug.LogMessage("Detectado " + keyStroke.getKeyType());
 		if (keyStroke != null) {
 			if (keyStroke.getKeyType() != null) {
 				LastKeyType = keyStroke.getKeyType();

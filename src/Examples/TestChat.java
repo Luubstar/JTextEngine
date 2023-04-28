@@ -41,7 +41,8 @@ public class TestChat extends Menu{
     public void Update() {
         try{
             String data = client.ReceiveString();
-            if (data.length() > 0){
+            if (data.length(
+            ) > 0){
                 mensajes += "\n" + data;
             }
 
