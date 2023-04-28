@@ -145,14 +145,14 @@ public class Profiler {
                     ProfileMeasure newlog = logs.get(i);
                     
                     String ColoredMessage = newlog.getColor().colorize(newlog.getTag() + " -> " + newlog.getLastTimeDataString() + " ms");
-                    String message  = Colors.clearANSI(ColoredMessage);
+                    String message  = Colors.clearColor(ColoredMessage);
                     String Color = newlog.getColor().toString();
                     
                     if (message.length() > Engine.getWidth()-2){
                         String[] SplitedLogs = Engine.splitString(message, Engine.getWidth() -7);
                         for (int a = 0; a < SplitedLogs.length; a++){
                             String splitedlog = SplitedLogs[a];
-                            message  = Colors.clearANSI(splitedlog);
+                            message  = Colors.clearColor(splitedlog);
                             if (a == 0){logstring += verticalBlock + "  " + Color + message + Colors.SANE+ space.repeat(Engine.getWidth() - 4 - message.length()) + verticalBlock;}    
                             else{logstring += verticalBlock + "  " + Color + message + Colors.SANE+ space.repeat(Engine.getWidth() - 4 - message.length()) + verticalBlock;}
                         }

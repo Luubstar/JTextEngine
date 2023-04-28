@@ -33,5 +33,5 @@ public class SoundEngine {
     }
     
 
-    public float getGenrealVolume(){return GeneralVolume;}
+    public float getGeneralVolume(){return GeneralVolume;}
 }

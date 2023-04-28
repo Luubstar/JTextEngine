@@ -13,6 +13,12 @@ public class Engine {
     private static int WIDTH;
     private static int HEIGHT;
 
+    /**
+     * This function starts the program by initializing various components and starting the tick clock.
+     * 
+     * @param MenuInicial MenuInicial is a parameter of type Menu that is passed to the Start method.
+     * It is likely used to set the initial menu that the user sees when the program starts.
+     */
     public static void Start(Menu MenuInicial){
         try{
             updateSize();
@@ -25,7 +31,13 @@ public class Engine {
         catch(Exception e){Debug.LogError(e.getMessage());}
     }
 
+    /**
+     * Prints text on the console
+     */
     public static void print(String text){System.out.print(text + "\n");}
+    /**
+     * Clears the console
+     */
     public static void clearConsole() {
         try {
             final String os = System.getProperty("os.name");
@@ -55,11 +67,15 @@ public class Engine {
         MenuActual.Start();
     }
     public static String Draw(){return MenuActual.Frame();}
+
     public static void GetInput() throws Exception{
         Keyboard.DetectInput();
         MenuActual.Update();
     }
     
+    /** 
+     * Returns the extension of a file
+    */
     public static String getFileExtension(File file) {
         try{
             String name = file.getName();
@@ -72,6 +88,12 @@ public class Engine {
         catch(Exception e){Debug.LogError(e.getMessage()); return "";}
     }
 
+    /**
+     * This function gets the size of the terminal window in which the program is running.
+     * 
+     * @return The method is returning a string that represents the size of the console window in the
+     * format "columns x rows".
+     */
     public static String getSize(){
         try{
             String os = System.getProperty("os.name").toLowerCase();
@@ -106,6 +128,9 @@ public class Engine {
     public static int getWidth(){return WIDTH;}
     public static int getHeight(){return HEIGHT;}
 
+    /**
+     * The function checks if the size of the window has been resized and updates it if necessary.
+     */
     public static void CheckIfResized(){
         String[] size = getSize().split("x");
         if (Integer.parseInt(size[0]) != WIDTH || Integer.parseInt(size[1]) != HEIGHT){

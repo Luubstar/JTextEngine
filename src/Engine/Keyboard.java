@@ -76,6 +76,13 @@ public class Keyboard  {
 		return getKeyValue().toLowerCase().equals(keyValue.toLowerCase());
 	}
 
+	/**
+	 * This function reads user input from the keyboard and returns it as a string.
+	 * 
+	 * @param prefix The prefix parameter is a string that will be printed before the user input. It can
+	 * be used to prompt the user for input or provide context for the expected input.
+	 * @return The String result 
+	 */
 	public static String Scanner(String prefix)throws Exception{
 		String res = "";
 		while(getKeyType() != KeyTypeByString("Enter")){

@@ -64,7 +64,7 @@ public class Debug {
 
         String log = "";
         for (Log logALeer:GetLog()){
-            log += Colors.clearANSI(logALeer.getMessage() + logALeer.getQuantityString()) + "\n";
+            log += Colors.clearColor(logALeer.getMessage() + logALeer.getQuantityString()) + "\n";
         }
 
         bw.write(log);
@@ -112,14 +112,14 @@ public class Debug {
                     Log newlog = logs.get(i);
                     
                     String ColoredMessage = newlog.getMessage() + newlog.getQuantityString();
-                    String message  = Colors.clearANSI(ColoredMessage);
+                    String message  = Colors.clearColor(ColoredMessage);
                     String Color = Colors.getColor(ColoredMessage);
                     
                     if (message.length() > Engine.getWidth()-2){
                         String[] SplitedLogs = Engine.splitString(message, Engine.getWidth() -7);
                         for (int a = 0; a < SplitedLogs.length; a++){
                             String splitedlog = SplitedLogs[a];
-                            message  = Colors.clearANSI(splitedlog);
+                            message  = Colors.clearColor(splitedlog);
                             if (a == 0){logstring += verticalBlock + "  " + Color + message + Colors.SANE+ space.repeat(Engine.getWidth() - 4 - message.length()) + verticalBlock;}    
                             else{logstring += verticalBlock + "  " + Color + message + Colors.SANE+ space.repeat(Engine.getWidth() - 4 - message.length()) + verticalBlock;}
                         }

@@ -17,6 +17,10 @@ public class NetworkClient {
         this.puerto = puerto;
     }
 
+    /**
+     * This function creates a socket connection with a specified host and port, sets a timeout, and
+     * initializes input and output streams.
+     */
     public void Connect() throws Exception {
         socket = new Socket(host, puerto);
         socket.setSoTimeout(Timeout);

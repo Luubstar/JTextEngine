@@ -18,7 +18,7 @@ import java.util.List;
  * NOTE: Nothing stops you from combining multiple FG colors or BG colors, 
  *       but only the last one will display.
  * 
- * @author dain (Thx dain ;) )
+ * (Thx dain ;))
  *
  */
 public final class Colors {
@@ -117,7 +117,7 @@ public final class Colors {
 		return colorize(String.format(template, args));
 	}
 
-	public static String clearANSI(String input){
+	public static String clearColor(String input){
 		for (String cadena: ListOfColors){
 			if (input.contains(cadena)){input = input.replace(cadena, "");}
 		}

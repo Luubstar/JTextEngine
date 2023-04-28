@@ -21,6 +21,9 @@ public class ClientObject extends Thread {
     }
 
     @Override
+    /**
+    Main function of a client object. Don't need to override
+    */
     public void run(){
         try {
             entrada = new DataInputStream(clientSocket.getInputStream());
