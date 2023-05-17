@@ -1,9 +1,33 @@
+<h1 id="title" align="center">JTextEngine</h1>
 
-# JTextEngine
+<p align="center"><img src="https://socialify.git.ci/Luubstar/JTextEngine/image?description=1&amp;descriptionEditable=Make%20easy%20console%20interactive%20programs%20in%20java&amp;font=Source%20Code%20Pro&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Charlie%20Brown&amp;theme=Auto" alt="project-image"></p>
 
-A small engine to create interactive console programs, with sound, networking and colors
+<p id="description">With this library you can create simple interactive console applications with a simple sound system colors and network</p>
 
+  
+  
+<h2>🧐 Features</h2>
 
-## Install
+Here're some of the project's best features:
 
-Download the latest version of the jar file and add it to your project. You will be able to import the classes freely afterwards
+*   Easy instalation
+*   Integrated debug and profiler system
+*   Simple network system
+*   Integrated entry system
+*   Wiki with full explanation
+
+<h2>🛠️ Installation Steps:</h2>
+
+<p>1. Download the Jar</p>
+
+<p>2. Import it to your project</p>
+
+<p>3. Enjoy coding!</p>
+
+<h2>🛡️ License:</h2>
+
+This project is licensed under the MIT license
+
+<h2>💖Like my work?</h2>
+
+You can make your own apps and show me in my discord Luubstar#3704
