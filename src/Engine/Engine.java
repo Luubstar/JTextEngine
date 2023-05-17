@@ -60,7 +60,7 @@ public class Engine {
      * Sets the Debug mode and then opens a debug menu (if it has exceptions)
      * @param mode
      */
-    public static void SetDebugMode(boolean mode){Debug.SetDebugMode(mode);}
+    public static void setDebugMode(boolean mode){Debug.SetDebugMode(mode);}
     /**
      * Returns the Debug mode
      * @return

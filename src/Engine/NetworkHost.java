@@ -140,7 +140,7 @@ public class NetworkHost{
      * @return
      * @throws IOException
      */
-    public String receiveString(ClientObject client) throws IOException{
+    public String ReceiveString(ClientObject client) throws IOException{
 
         if (client.entrada.available() > 0){
             int length = client.entrada.readInt();
@@ -161,7 +161,7 @@ public class NetworkHost{
      * @return
      * @throws IOException
      */
-    public byte[] receiveByte(ClientObject client) throws IOException{
+    public byte[] ReceiveByte(ClientObject client) throws IOException{
         if (client.entrada.available() > 0){
             int length = client.entrada.readInt();
             if (length > 0) {
