@@ -15,6 +15,8 @@ Here're some of the project's best features:
 *   Simple network system
 *   Integrated entry system
 *   Totally documented
+*   Packed with examples 
+*   Now with a Wiki!
 
 <h2>🛠️ Installation Steps:</h2>
 
