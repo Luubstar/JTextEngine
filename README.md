@@ -14,7 +14,7 @@ Here're some of the project's best features:
 *   Integrated debug and profiler system
 *   Simple network system
 *   Integrated entry system
-*   Wiki with full explanation
+*   Totally documented
 
 <h2>🛠️ Installation Steps:</h2>
 
