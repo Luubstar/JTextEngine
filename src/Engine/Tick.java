@@ -7,13 +7,15 @@ public class Tick extends Thread {
     String frame = "";
     String log = "";
     String Eframe = "";
-
     String lastFrame = "";
+
+    static boolean PrintNextFrame = false;
 
     long startTime;
     long endTime;
     long elapsed;
     public Tick(){}
+
     @Override
     public void run(){
         Engine.print("\033[?25l");
@@ -24,17 +26,14 @@ public class Tick extends Thread {
                 Profiler.StartMeasure("TickTime");
 
                 Profiler.StartMeasure("Input");
-
                 Engine.GetInput();
                 Keyboard.pos++;
                 if (Keyboard.pos > 5){
                     Keyboard.Clear();
                 }
-
-                Engine.CheckIfResized();
                 Profiler.EndMeasure("Input");
 
-                Render();
+                RenderF();
 
                 endTime = System.currentTimeMillis();
                 elapsed = endTime - startTime;
@@ -68,7 +67,7 @@ public class Tick extends Thread {
     static String MainF(String frame, String lastFrame, String extra){
     Profiler.StartMeasure("Render");
     frame = Engine.Draw();
-    if  (!frame.equals( lastFrame)){
+    if  (!frame.equals( extra + lastFrame)){
         Engine.clearConsole();
         Engine.print(extra + frame);
         System.out.flush();
@@ -78,12 +77,21 @@ public class Tick extends Thread {
     return lastFrame;
     }
 
-    void Render(){
+    void RenderF(){
 
-        frame = "";
-        Eframe = "";
-        Eframe += ProfilerF(frame);
-        Eframe += DebugF(frame);
-        lastFrame = MainF(frame, lastFrame, Eframe);
+        Engine.CheckIfResized();
+
+        if (PrintNextFrame){
+            frame = "";
+            Eframe = "";
+            Eframe += ProfilerF(frame);
+            Eframe += DebugF(frame);
+            lastFrame = MainF(frame, lastFrame, Eframe);
+            PrintNextFrame = false;
+        }
+    }
+
+    public static void Render(){
+        PrintNextFrame = true;
     }
 }

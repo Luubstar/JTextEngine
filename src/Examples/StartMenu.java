@@ -33,10 +33,12 @@ public class StartMenu extends Menu {
         if(Keyboard.IsLastKeyValue("S") || Keyboard.IsLastKeyOfType("ArrowDown")){
             pos++;
             if (pos >= opciones.length){pos = 0;}
+            Engine.Render();
         }
         else if(Keyboard.IsLastKeyValue("W") || Keyboard.IsLastKeyOfType("ArrowUp")){
             pos--;
             if(pos < 0){pos = opciones.length-1;}
+            Engine.Render();
         }
         else if (Keyboard.IsLastKeyOfType("Enter")){
             Keyboard.Clear();

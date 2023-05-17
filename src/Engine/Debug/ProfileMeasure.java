@@ -3,6 +3,7 @@ package Engine.Debug;
 import java.text.DecimalFormat;
 
 import Engine.Colors;
+import Engine.Engine;
 
 public class ProfileMeasure {
     private String Tag;
@@ -36,6 +37,7 @@ public class ProfileMeasure {
             LastTimeData = ((float) timeAcummulated)/(float) measures;
             measures = 0;
             timeAcummulated = 0;
+            Engine.Render();
         }
     }
 

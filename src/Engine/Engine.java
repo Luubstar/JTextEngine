@@ -35,6 +35,9 @@ public class Engine {
      * Prints text on the console
      */
     public static void print(String text){System.out.print(text + "\n");}
+
+    public static void Render(){Tick.Render();}
+
     /**
      * Clears the console
      */
@@ -65,6 +68,7 @@ public class Engine {
         MenuActual = newMenu;
         clearConsole();
         MenuActual.Start();
+        Engine.Render();
     }
     public static String Draw(){return MenuActual.Frame();}
 
@@ -136,6 +140,7 @@ public class Engine {
         if (Integer.parseInt(size[0]) != WIDTH || Integer.parseInt(size[1]) != HEIGHT){
             updateSize();
             MenuActual.OnRescale();
+            Engine.Render();
         }
     }
 
