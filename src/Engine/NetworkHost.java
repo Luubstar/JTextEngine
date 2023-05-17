@@ -14,6 +14,13 @@ public class NetworkHost{
 
     public NetworkHost(){}
 
+    /**
+     * Starts the server in the port
+     * 
+     * @param port
+     * @param host -> Host to start
+     * @throws Exception
+     */
     public void Start(int port, NetworkHost host) throws Exception{
         serverSocket = new ServerSocket(port);
 
@@ -28,31 +35,68 @@ public class NetworkHost{
         serverSocket.close();
     }
 
+    /**
+     * Stops the host
+     */
     public void Stop(){this.going = false;}
 
 
+    /**
+     * Callback when client connects
+     * 
+     * @param client
+     * @throws Exception
+     */
     public void onClientConnected(ClientObject client) throws Exception{
         System.out.println("connected");
     }
 
+    /**
+    * Callback when a client disconnects
+    * @param client
+    * @throws Exception
+    */
     public void onClientDisconnected(ClientObject client) throws Exception{
         System.out.println("disconnected");
     }
 
+    /**
+    * Callback when recieved data from a client
+    * @param client
+    * @throws Exception
+    */
     public void onRecieveFromClient(ClientObject client, byte[] data) throws Exception{
         System.out.println("data");
     }
 
+    /**
+     * Sends data to client
+     * @param client
+     * @param data -> String
+     * @throws IOException
+     */
     public void Send(ClientObject client, String data) throws IOException{
         client.salida.writeInt(data.getBytes().length);
         client.salida.write(data.getBytes());
     }
 
+    /**
+     * Sends data to client
+     * @param client
+     * @param data -> byte[]
+     * @throws IOException
+     */
     public void Send(ClientObject client, byte[] data) throws IOException{
         client.salida.writeInt(data.length);
         client.salida.write(data);
     }
 
+    /**
+     * Sends data to all clients
+     * @param data -> String
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void SendToAll(String data) throws IOException,InterruptedException{
 
         for (ClientObject clientToSend : Clients){
@@ -68,6 +112,12 @@ public class NetworkHost{
         }
     }
 
+    /**
+     * Sends data to all clients
+     * @param data -> byte[]
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void SendToAll(byte[] data) throws IOException, InterruptedException{
 
         for (ClientObject clientToSend : Clients){
@@ -84,6 +134,12 @@ public class NetworkHost{
         }
     }
 
+    /**
+     * Gets a string from a client if it is available
+     * @param client
+     * @return
+     * @throws IOException
+     */
     public String receiveString(ClientObject client) throws IOException{
 
         if (client.entrada.available() > 0){
@@ -99,6 +155,12 @@ public class NetworkHost{
         else{return "";}
     }
 
+    /**
+     * Gets a byte[] from a client if it is available
+     * @param client
+     * @return
+     * @throws IOException
+     */
     public byte[] receiveByte(ClientObject client) throws IOException{
         if (client.entrada.available() > 0){
             int length = client.entrada.readInt();
@@ -112,8 +174,16 @@ public class NetworkHost{
         else{return new byte[0];}
     }
 
+    /**
+     * Returns the array of connected clients
+     * @return
+     */
     public ClientObject[] GetClients(){return Clients.toArray(new ClientObject[Clients.size()]);}
 
+    /**
+     * Sets the timeout before kicking
+     * @param Timeout
+     */
     public void setTimeout(int Timeout){this.Timeout = Timeout;}
 
 

@@ -8,5 +8,7 @@
             "lib/jl1.0.1.jar"
         ]
     },
-    "docwriter.style": "Javadoc"
+    "docwriter.style": "Javadoc",
+    "docwriter.progress.trackClasses": false,
+    "docwriter.progress.trackMethods": true
 }

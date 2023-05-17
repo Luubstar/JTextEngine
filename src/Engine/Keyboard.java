@@ -19,7 +19,10 @@ public class Keyboard  {
 	static TerminalScreen screen;
 	static Terminal terminal;
 
-	
+	/**
+	 * Starts the keyboard system
+	 * @throws Exception
+	 */
 	public static void Start() throws Exception{
 
 		terminal = new DefaultTerminalFactory().createTerminal();
@@ -28,6 +31,10 @@ public class Keyboard  {
 		screen.setCursorPosition(null); 
 	}
 
+	/**
+	 * Reads the input of the keyboard
+	 * @throws Exception
+	 */
 	public static void DetectInput() throws Exception{
 		KeyStroke keyStroke = screen.pollInput();
 
@@ -46,12 +53,31 @@ public class Keyboard  {
 		}
 	}
 	
-
+	/**
+	 * Returns the KeyCode of the LastKey
+	 * @return
+	 */
     public static int getKeyCode(){return LastKey;}
+	/**
+	 * Returns the value of the LastKey
+	 * @return
+	 */
     public static String getKeyValue(){
 		return new String(new char[] {LastChar});}
+	/**
+	 * Returns the character of the LastKey
+	 * @return
+	 */
 	public static char getKeyCharacter() {return LastChar;}
+	/**
+	 * Returns the type of the LastKey
+	 * @return
+	 */
 	public static KeyType getKeyType() {return LastKeyType;}
+
+	/**
+	 * Cleans the keyboard and lastKey is now null
+	 */
 	public static void Clear(){
 		LastKey = 0;
 		LastChar = ESCAPECHAR;
@@ -59,6 +85,11 @@ public class Keyboard  {
 		pos = 0;
 	}
 
+	/**
+	 * Returns the keytype as a String
+	 * @param keyString
+	 * @return
+	 */
 	public static KeyType KeyTypeByString(String keyString) {
 		for (KeyType keyType : KeyType.values()) {
 			if (keyType.name().equalsIgnoreCase(keyString)) {
@@ -68,10 +99,20 @@ public class Keyboard  {
 		return null;
     }
 
+	/**
+	 * Returns if the type of the last key equals keyValue
+	 * @param keyValue
+	 * @return
+	 */
 	public static boolean IsLastKeyOfType(String keyType){
 		return getKeyType() == KeyTypeByString(keyType);
 	}
 
+	/**
+	 * Returns if the last key is equals to keyValue
+	 * @param keyValue
+	 * @return
+	 */
 	public static boolean IsLastKeyValue(String keyValue){
 		return getKeyValue().toLowerCase().equals(keyValue.toLowerCase());
 	}

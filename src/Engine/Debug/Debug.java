@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import Engine.Colors;
 import Engine.Engine;
-import Engine.Log;
 
 
 public class Debug {
@@ -26,12 +25,34 @@ public class Debug {
     private static ArrayList<Log> DLog = new ArrayList<>();
     private static boolean DebugMode = false;
 
+    /**
+     * Returns the Debug mode
+     * @return
+     */
     public static boolean GetDebugMode(){return DebugMode;}
+    /**
+     * Sets the Sebug mode
+     * @param mode
+     */
     public static void SetDebugMode(boolean mode){DebugMode = mode;}
 
-    public static void Log(String log){DLog.add(new Log(log));CheckIfRepited();}
+    /**
+     * Logs a simple string
+     * @param log
+     */
+    static void Log(String log){DLog.add(new Log(log));CheckIfRepited();}
+    /**
+     * Logs a simple string with a custom Color
+     * @param log
+     * @param color
+     */
     public static void Log(String log, Colors color){DLog.add(new Log(color.colorizeNoSane("\n " + log)));CheckIfRepited();}
-    public static void Log(String log, int Modo){ 
+    /**
+     * Logs a string using the static ints
+     * @param log
+     * @param Modo
+     */
+    static void Log(String log, int Modo){ 
         String prefix = "";
         if(Modo == DEBUGMESSAGE){prefix = "✉ ";}
         else if (Modo == DEBUGOK){prefix = Colors.GREEN + "✔ ";}
@@ -41,15 +62,47 @@ public class Debug {
         CheckIfRepited();
     }
 
+    /**
+     * Logs a green String. Use when something is OK
+     * @param log
+     */
     public static void LogOK(String log){Log(log,DEBUGOK);}
+    /**
+     * Logs a red String. Use when something is an Error
+     * @param log
+     */
     public static void LogError(String log){Log(log,DEBUGERROR);}
+    /**
+     * Logs a yellow String. Use when something is a Warning
+     * @param log
+     */
     public static void LogWarning(String log){Log(log,DEBUGWARNING);}
+    /**
+     * Logs a simple string. Prefer over Log()
+     * @param log
+     */
     public static void LogMessage(String log){Log(log,DEBUGMESSAGE);}
 
+    /**
+     * Clears all the logs in the Debug Menu
+     */
     public static void ClearLog(){DLog.clear();}
+    /**
+     * Returns the logs of the Debug Menu
+     * @return
+     */
     public static ArrayList<Log> GetLog(){return DLog;}
+    /**
+     * Sets the logs of the Debug Menu
+     * @param List
+     */
     public static void SetLog(ArrayList<Log> List){DLog = List;}
 
+    /**
+     * Export logs as textfile
+     * @param filepath -> file to export
+     * @throws Exception
+     */
     public static void ExportLogs(String filepath) throws Exception{
         
         File archivo = new File(filepath);
@@ -75,6 +128,9 @@ public class Debug {
 
     }
 
+    /**
+     * Checks if some log is duplicated
+     */
     public static void CheckIfRepited(){
         ArrayList<Log> List = GetLog();
         ArrayList<Log> NewList = new ArrayList<>();
@@ -97,6 +153,10 @@ public class Debug {
         SetLog(NewList);
     }
 
+    /**
+     * Exports the Debug Menu to a string (used to print the frame)
+     * @return
+     */
     public static String LogToString(){
         try{
             String logstring = "";

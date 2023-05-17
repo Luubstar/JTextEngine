@@ -6,25 +6,41 @@ public class SoundEngine {
 
     public static float GeneralVolume = 0.75f;
 
-    public static void playSound(Sound Sonido) {
-        Sonido.start();
+    /**
+     * Plays a Sound 1 time
+     * @param Sonido
+     */
+    public static void playSound(Sound S) {
+        S.start();
     }
 
-    public static void playSound(Sound Sonido, int Looptimes) {
-        Sonido.Loops = Looptimes;
-        Sonido.start();
+    /**
+     * Plays a Sound and repeats it looptimes
+     * @param Sonido
+     * @param Looptimes
+     */
+    public static void playSound(Sound S, int Looptimes) {
+        S.Loops = Looptimes;
+        S.start();
     }
 
-    public static void stopSound(Sound Sonido){
+    /**
+     * Stops the play of a Sound
+     * @param S
+     */
+    public static void stopSound(Sound S){
         try{
-            Sonido.clip.close();
-            Sonido.AudioIS.close();
+            S.clip.close();
+            S.AudioIS.close();
         }
         catch(Exception e){Debug.LogError(e.getMessage());}
     }
 
-    /**@param newvol (min 0, max 1)*/
-    public void setGeneralVolume(float NewVol){
+    /**
+     * Sets the default volume of all sounds
+     * @param NewVol
+     */
+    public void setDefaultVolume(float NewVol){
         try{
             if (!(NewVol > 1 && NewVol < 0)){GeneralVolume = NewVol;}
             else{throw new Exception("Float value out of bounds");}
@@ -33,5 +49,9 @@ public class SoundEngine {
     }
     
 
-    public float getGeneralVolume(){return GeneralVolume;}
+    /**
+     * Returns the default volume value
+     * @return
+     */    
+    public float getDefaultVolume(){return GeneralVolume;}
 }

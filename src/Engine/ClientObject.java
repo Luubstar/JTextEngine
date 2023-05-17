@@ -5,6 +5,9 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import java.nio.charset.Charset;
 
+/**
+ * Main Class from the Network Client
+ */
 public class ClientObject extends Thread {
     public Socket clientSocket;
     public NetworkHost host;
@@ -22,7 +25,7 @@ public class ClientObject extends Thread {
 
     @Override
     /**
-    Main function of a client object. Don't need to override
+    *Main function of a client object. Don't need to override
     */
     public void run(){
         try {

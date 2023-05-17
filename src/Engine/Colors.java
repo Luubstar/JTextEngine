@@ -88,6 +88,7 @@ public final class Colors {
 	
 	final private String[] codes;
 	final private String codes_str; 
+
 	public Colors(String... codes) {
 		this.codes = codes;
 		String _codes_str = "";
@@ -97,6 +98,11 @@ public final class Colors {
 		codes_str = _codes_str;
 	}
 	
+	/**
+	 * Adds a color (for use multiple when colorize)
+	 * @param other
+	 * @return
+	 */
 	public Colors and(Colors other) {
 		List<String> both = new ArrayList<String>();
 	    Collections.addAll(both, codes);
@@ -104,19 +110,40 @@ public final class Colors {
 		return new Colors(both.toArray(new String[] {}));
 	}
 
+	/**
+	 * Colorize the string
+	 * @param original
+	 * @return
+	 */
 	public String colorize(String original) {
 		return codes_str + original + SANE;
 	}
 
 
+	/**
+	 * Colorize the string but without stopping the color at the end
+	 * @param original
+	 * @return
+	 */
 	public String colorizeNoSane(String original) {
 		return codes_str + original;
 	}
 	
+	/**
+	 * Formats the string and then gives it colors
+	 * @param template
+	 * @param args
+	 * @return
+	 */
 	public String format(String template, Object... args) {
 		return colorize(String.format(template, args));
 	}
 
+	/**
+	 * Cleans the color from the string
+	 * @param input
+	 * @return
+	 */
 	public static String clearColor(String input){
 		for (String cadena: ListOfColors){
 			if (input.contains(cadena)){input = input.replace(cadena, "");}
@@ -124,6 +151,11 @@ public final class Colors {
 		return input;
 	}
 
+	/**
+	 * Gets color by string
+	 * @param input
+	 * @return
+	 */
 	public static String getColor(String input){
 		for (String cadena: ListOfColors){
 			if (input.contains(cadena)){return cadena;}

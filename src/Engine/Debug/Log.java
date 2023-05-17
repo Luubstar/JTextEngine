@@ -1,4 +1,4 @@
-package Engine;
+package Engine.Debug;
 
 public class Log {
     private String message;

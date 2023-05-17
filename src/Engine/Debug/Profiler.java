@@ -29,41 +29,103 @@ public class Profiler {
     static String filter = "All";
     private static int measuresTop = 30; 
 
+    /**
+     * Sets the mode of the profiler
+     * @param mode
+     */
     public static void setProfilerMode(boolean mode){Display = mode;}
+    /**
+     * Gets the mode of the profiler
+     * @return
+     */
     public  static boolean getProfilerMode(){return Display;}
 
+    /**
+     * Sets the fps mode
+     * @param mode
+     */
     public static void setFPSMode(boolean mode){showFPS = mode;}
+    /**
+     * Gets the fps mode
+     * @return
+     */
     public static boolean getFPSMode(){return showFPS;}
+
+    /**
+     * Returns the fps of the execution (as String)
+     * @return
+     */
     public static String getFPS(){
         DecimalFormat formater = new DecimalFormat("#.##");
         return "FPS: " + formater.format((float)1000/getLastData("TickTime")) + "/" + formater.format((float)1000/Engine.frameTime());
     }
 
+    /**
+     * Starts the Profiler
+     */
     public static void Start(){
         ProfileData.add(new ProfileMeasure("TickTime", "General" ,Colors.Yellow));
-        ProfileData.add(new ProfileMeasure("Profiler", "Advance" ,Colors.Green));
-        ProfileData.add(new ProfileMeasure("DebugLogger", "Advance" ,Colors.Red));
-        ProfileData.add(new ProfileMeasure("Render", "Advance" ,Colors.Blue));
-        ProfileData.add(new ProfileMeasure("WaitTime", "Advance" ,Colors.Yellow));
-        ProfileData.add(new ProfileMeasure("Input", "Advance" ,Colors.Cyan));
+        ProfileData.add(new ProfileMeasure("Profiler", "Advanced" ,Colors.Green));
+        ProfileData.add(new ProfileMeasure("DebugLogger", "Advanced" ,Colors.Red));
+        ProfileData.add(new ProfileMeasure("Render", "Advanced" ,Colors.Blue));
+        ProfileData.add(new ProfileMeasure("WaitTime", "Advanced" ,Colors.Yellow));
+        ProfileData.add(new ProfileMeasure("Input", "Advanced" ,Colors.Cyan));
     }
 
+    /**
+     * Adds a new data to the profiler
+     * @param data
+     */
     public static void AddProfile(ProfileMeasure data){ProfileData.add(data);}
+    /**
+     * Deletes all the profilers data
+     */
     public static void DeleteProfiles(){ProfileData.clear();}
+    /**
+     * Clears all data of the profiler
+     */
     public static void ResetProfiles(){
         for (ProfileMeasure measure: ProfileData){measure.reset();}
     }
+    /**
+     * Deletes data object from the profiler
+     * @param data
+     */
     public static void DeleteProfile(ProfileMeasure data){ProfileData.remove(data);}
 
-
+    /**
+     * Starts the measure of a ProfileMeasure using the tag
+     * @param tag
+     */
     public static void StartMeasure(String tag){findByTag(tag).StartMeasure();}
+    /**
+     * Ends the measure of a ProfileMeasure using the tag
+     * @param tag
+     */
     public static void EndMeasure(String tag){findByTag(tag).EndMeasure();}
 
+    /**
+     * Sets the number of measures before printing the estimated time
+     * @param measures
+     */
     public static void SetMeasuresUntilData(int measures){measuresTop = measures;}
+    /**
+     * Gets the number of measures before printing
+     * @return
+     */
     public static int GetMeasuresUntilData(){return measuresTop;}
 
+    /**
+     * Returns the last data of a Measure by tag
+     * @param tag
+     * @return
+     */
     public static float getLastData(String tag){return findByTag(tag).getLastTimeData();}
 
+    /**
+     * Returns all the last data from all the measures
+     * @return
+     */
     public static float[] getAllLastData(){
         float[] data = new float[ProfileData.size()];
         for (int i = 0; i < ProfileData.size(); i++){
@@ -72,6 +134,11 @@ public class Profiler {
         return data;
     }
 
+    /**
+     * Finds a ProfileMeasure by tag
+     * @param tag
+     * @return
+     */
     public static ProfileMeasure findByTag(String tag){
         for (ProfileMeasure Measure:ProfileData){
             if (Measure.getTag().toLowerCase().equals(tag.toLowerCase())){return Measure;}
@@ -79,8 +146,21 @@ public class Profiler {
         return null;
     }
 
+    /**
+     * Sets the filter. Only the data whose type field matches the filter will be printed. If filter is "All", it will print all
+     * @param f
+     */
     public static void setFilter(String f){filter = f.toLowerCase();}
+    /**
+     * Returns the filter
+     * @return
+     */
     public static String getFilter(){return filter;}
+    /**
+     * Returns the list of measures by a filter
+     * @param f
+     * @return
+     */
     public static ArrayList<ProfileMeasure> getListByFilter(String f){
         if (f.toLowerCase().equals("all")){return ProfileData;}
         ArrayList<ProfileMeasure> FilteredData = new ArrayList<>();
@@ -90,6 +170,12 @@ public class Profiler {
         return FilteredData;
     }
 
+    /**
+     * Prints the last data of the profiler in filepath 
+     * @param filepath
+     * @param filter
+     * @throws Exception
+     */
     public static void ProfilerToFile(String filepath, String filter) throws Exception{
         File file = new File(filepath);
 
@@ -109,6 +195,23 @@ public class Profiler {
         fw.close();
     }
 
+    /**
+     * Prints the last data of the profiler in filepath 
+     * @param filepath
+     * @throws Exception
+     */
+    public static void ProfilerToFile(String filepath) throws Exception{
+        ProfilerToFile(filepath, getFilter());
+    }
+
+
+
+    /**
+     * Exports the profiler as a piechart
+     * @param filepath
+     * @param filter
+     * @throws Exception
+     */
     public static void ExportPieChart(String filepath, String filter) throws Exception{
         PieChart chart = new PieChartBuilder().width(800).height(600).title("Profilers").theme(ChartTheme.GGPlot2).build();
 
@@ -126,10 +229,19 @@ public class Profiler {
         BitmapEncoder.saveBitmapWithDPI(chart, filepath, BitmapFormat.PNG, 300);
     }
 
+    /**
+     * Exports the profiler as a piechart
+     * @param filepath
+     * @throws Exception
+     */
     public static void ExportPieChart(String filepath) throws Exception{
         ExportPieChart(filepath, getFilter());
     }
 
+    /**
+     * Draws the profiler menu as a string (for printing in the frame)
+     * @return
+     */
     public static String ProfilerToString(){
         try{
             String logstring = "";
