@@ -1,4 +1,5 @@
 package Examples;
+import Engine.Engine;
 import Engine.Keyboard;
 import Engine.Menu;
 
@@ -13,8 +14,10 @@ public class TestInput extends Menu {
     
     @Override
     public void Update() {
+
         if (Keyboard.getKeyType() != null ){pantalla = Keyboard.getKeyValue() + " -> " + Keyboard.getKeyCode() + " -> " + Keyboard.getKeyType();}
         Keyboard.Clear();
+        Engine.Render();
     }
 
 }

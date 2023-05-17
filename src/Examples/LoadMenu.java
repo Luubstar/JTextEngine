@@ -21,14 +21,15 @@ public class LoadMenu extends Menu {
             Pulsa intro para regresar
             
             """;
-        pos++;
-        if (pos >= opciones.length){pos = 0;}
-        return out + "\n" + opciones[pos];
+        return out + "\n" + opciones[pos/2];
     }
 
     @Override
     public void Update() {
+        pos++;
+        if (pos >= opciones.length*2){pos = 0;}
         if (Keyboard.IsLastKeyOfType("Enter")){ Engine.SetMenu( new StartMenu());}
+        Engine.Render();
         Keyboard.Clear();
     }
 }

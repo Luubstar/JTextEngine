@@ -16,14 +16,17 @@ public class Rainbow extends Menu{
             if (index >= colores.length){index -= colores.length;}
             res += colores[index] + "█████████████████████████████████████████████\n" + Colors.SANE;
         }
-        desfase++;
-        if (desfase >= colores.length){desfase -= colores.length;}
         return res;
     }
 
     @Override
     public void Update() {
+        
+        desfase++;
+        if (desfase >= colores.length){desfase -= colores.length;}
         if (Keyboard.IsLastKeyOfType("Enter")){ Engine.SetMenu( new StartMenu());}
         Keyboard.Clear();
+
+        Engine.Render();
     }
 }

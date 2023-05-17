@@ -31,5 +31,6 @@ public class TestSound extends Menu {
         else if (Keyboard.getKeyValue().equals("3")){Engine.SetMenu(new StartMenu());}
 
         Keyboard.Clear();
+        Engine.Render();
     }
 }
