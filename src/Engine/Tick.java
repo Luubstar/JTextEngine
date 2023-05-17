@@ -6,6 +6,7 @@ import Engine.Debug.Profiler;
 public class Tick extends Thread {
     String frame = "";
     String log = "";
+    String Eframe = "";
 
     String lastFrame = "";
 
@@ -22,7 +23,7 @@ public class Tick extends Thread {
                 startTime = System.currentTimeMillis();
                 Profiler.StartMeasure("TickTime");
 
-                Profiler.StartMeasure("Other");
+                Profiler.StartMeasure("Input");
 
                 Engine.GetInput();
                 Keyboard.pos++;
@@ -31,31 +32,9 @@ public class Tick extends Thread {
                 }
 
                 Engine.CheckIfResized();
-                
-                Profiler.EndMeasure("Other");
+                Profiler.EndMeasure("Input");
 
-                frame = "";
-
-                Profiler.StartMeasure("Profiler");
-                if (Profiler.getProfilerMode()){frame = Profiler.ProfilerToString();}
-                if (Profiler.getFPSMode()){frame += Profiler.getFPS();}
-                Profiler.EndMeasure("Profiler");
-                
-                Profiler.StartMeasure("DebugLogger");
-                if (Engine.GetDebugMode()){
-                    frame += "\n"+ Debug.LogToString();}
-                Profiler.EndMeasure("DebugLogger");
-
-                
-                Profiler.StartMeasure("Render");
-                frame += Engine.Draw();
-                if  (frame != lastFrame){
-                    Engine.clearConsole();
-
-                    Engine.print(frame);
-                    System.out.flush();
-                }
-                Profiler.EndMeasure("Render");
+                Render();
 
                 endTime = System.currentTimeMillis();
                 elapsed = endTime - startTime;
@@ -65,9 +44,46 @@ public class Tick extends Thread {
                 }
                 Profiler.EndMeasure("WaitTime");
                 Profiler.EndMeasure("TickTime");
-
             } catch (Exception e) {Debug.LogError(e.getMessage());}
         }
     }
 
+
+    static String ProfilerF(String frame){
+        Profiler.StartMeasure("Profiler");
+        if (Profiler.getProfilerMode()){frame = Profiler.ProfilerToString();}
+        if (Profiler.getFPSMode()){frame += Profiler.getFPS();}
+        Profiler.EndMeasure("Profiler");
+        return frame;
+    }
+
+    static String DebugF(String frame){
+        Profiler.StartMeasure("DebugLogger");
+        if (Engine.GetDebugMode()){
+            frame += "\n"+ Debug.LogToString();}
+        Profiler.EndMeasure("DebugLogger");
+        return frame;
+    }
+
+    static String MainF(String frame, String lastFrame, String extra){
+    Profiler.StartMeasure("Render");
+    frame = Engine.Draw();
+    if  (!frame.equals( lastFrame)){
+        Engine.clearConsole();
+        Engine.print(extra + frame);
+        System.out.flush();
+        lastFrame = frame;
+    }
+    Profiler.EndMeasure("Render");
+    return lastFrame;
+    }
+
+    void Render(){
+
+        frame = "";
+        Eframe = "";
+        Eframe += ProfilerF(frame);
+        Eframe += DebugF(frame);
+        lastFrame = MainF(frame, lastFrame, Eframe);
+    }
 }

@@ -45,7 +45,7 @@ public class Profiler {
         ProfileData.add(new ProfileMeasure("DebugLogger", "Advance" ,Colors.Red));
         ProfileData.add(new ProfileMeasure("Render", "Advance" ,Colors.Blue));
         ProfileData.add(new ProfileMeasure("WaitTime", "Advance" ,Colors.Yellow));
-        ProfileData.add(new ProfileMeasure("Other", "Advance" ,Colors.Cyan));
+        ProfileData.add(new ProfileMeasure("Input", "Advance" ,Colors.Cyan));
     }
 
     public static void AddProfile(ProfileMeasure data){ProfileData.add(data);}
