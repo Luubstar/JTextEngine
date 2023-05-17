@@ -1,5 +1,7 @@
 package Examples;
 import Engine.Colors;
+import Engine.Engine;
+import Engine.Keyboard;
 import Engine.Menu;
 
 public class Rainbow extends Menu{
@@ -21,5 +23,7 @@ public class Rainbow extends Menu{
 
     @Override
     public void Update() {
+        if (Keyboard.IsLastKeyOfType("Enter")){ Engine.SetMenu( new StartMenu());}
+        Keyboard.Clear();
     }
 }

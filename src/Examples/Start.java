@@ -6,7 +6,7 @@ public class Start
    public static void main(String[] args){
       Engine.SetDebugMode(true);
       
-      Engine.SetFrameTime(20);
+      Engine.SetFrameTime(30);
       Engine.Start(new StartMenu());
    }
 }
