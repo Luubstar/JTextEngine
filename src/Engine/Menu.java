@@ -12,7 +12,7 @@ public class Menu {
     public void Start(){}
     /**
      * The function that renders the frame
-     * @return
+     * @return the string that will be rendered
      */
     public String Frame(){return "";}
     /**
