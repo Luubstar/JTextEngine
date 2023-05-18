@@ -6,8 +6,6 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
-
-
 public class Keyboard  {
 
 	public static final char ESCAPECHAR = ' ';
@@ -37,14 +35,13 @@ public class Keyboard  {
 	 */
 	public static void DetectInput() throws Exception{
 		KeyStroke keyStroke = screen.pollInput();
-
 		if (keyStroke != null) {
 			if (keyStroke.getKeyType() != null) {
 				LastKeyType = keyStroke.getKeyType();
 				pos = 0;
 				if (keyStroke.getCharacter() != null){
-				LastChar = keyStroke.getCharacter();
-				LastKey = (int) LastChar;}
+					LastChar = keyStroke.getCharacter();
+					LastKey = (int) LastChar;}
 				while (screen.pollInput() != null) {
 					// no hace nada, solo vacía la cola
 				}
@@ -118,26 +115,31 @@ public class Keyboard  {
 	}
 
 	/**
-	 * This function reads user input from the keyboard and returns it as a string.
+	 * This function reads user input from the keyboard and returns it as a string. ¿Bugs?
 	 * 
 	 * @param prefix The prefix parameter is a string that will be printed before the user input. It can
 	 * be used to prompt the user for input or provide context for the expected input.
 	 * @return The String result 
 	 */
-	public static String Scanner(String prefix)throws Exception{
+	public static String Scanner(String prefix) throws Exception{
 		String res = "";
+		String laststring = "------------------------------";
 		while(getKeyType() != KeyTypeByString("Enter")){
-			if (Keyboard.IsLastKeyOfType("Character")){res += Keyboard.getKeyValue();}
-            else if (Keyboard.IsLastKeyOfType("Backspace") && res.length() > 0){res = res.substring(0,res.length()-1);}
-            else if (Keyboard.IsLastKeyOfType("Enter")){break;}
-			System.out.print(prefix + res);
+
+			if (IsLastKeyOfType("Character")){res += getKeyValue();}
+			else if (IsLastKeyOfType("Backspace") && res.length() > 0){res = res.substring(0,res.length()-1);}
+
+			if (laststring != res) {
+				laststring = res;
+				Engine.clearConsole();
+				Engine.print(prefix + res);
+			}
+
 			Thread.sleep(Engine.frameTime());
-			Engine.clearConsole();
 			Clear();
 			DetectInput();
 		}
 		Clear();
-		DetectInput();
 		return res;
 	}
 

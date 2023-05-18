@@ -1,7 +1,6 @@
 package Examples;
 
-import java.util.Scanner;
-
+import Engine.Engine;
 import Engine.Keyboard;
 import Engine.Menu;
 import Engine.NetworkClient;
@@ -13,21 +12,18 @@ public class TestChat extends Menu{
     private String mensajes = "";
     private String frame;
     private String futureMessage = "";
-    private String IP;
-    private int port;
+    private String IP = "127.0.0.1";
+    private int port = 5555;
     private NetworkClient client;
 
     @Override
     public void Start() {
         try{
             
-            Scanner scanner = new Scanner(System.in);
-
             IP = Keyboard.Scanner("Introduzca la dirección IP: ");
             port = Integer.parseInt(Keyboard.Scanner("Introduzca el puerto: "));
             name = Keyboard.Scanner("Introduzca su nombre de usuario: ");
 
-            scanner.close();
             client = new NetworkClient(IP, port);
             client.Connect();
             client.Send("["+name+"] Se ha unido a la sala");
@@ -40,23 +36,24 @@ public class TestChat extends Menu{
     @Override
     public void Update() {
         try{
+
             String data = client.ReceiveString();
             if (data.length(
             ) > 0){
                 mensajes += "\n" + data;
             }
 
-            Debug.LogMessage(Keyboard.getKeyType() + " " + Keyboard.getKeyValue());
-
-            if (Keyboard.IsLastKeyOfType("Character") && Keyboard.getKeyCharacter() != Keyboard.ESCAPECHAR){futureMessage += Keyboard.getKeyValue();}
-            else if (Keyboard.IsLastKeyOfType("Backspace") && futureMessage.length() > 0){futureMessage = futureMessage.substring(0,futureMessage.length()-1);}
-            else if (Keyboard.IsLastKeyOfType("Enter")){
-                System.out.print("Enviando");
-                client.Send("["+name+"] "+ futureMessage);
-                futureMessage = "";
+            if (Keyboard.getKeyType() != null){
+                if (Keyboard.IsLastKeyOfType("Character")){futureMessage += Keyboard.getKeyValue(); }
+                else if (Keyboard.IsLastKeyOfType("Backspace") && futureMessage.length() > 0){futureMessage = futureMessage.substring(0,futureMessage.length()-1);}
+                else if (Keyboard.IsLastKeyOfType("Enter")){
+                    System.out.print("Enviando");
+                    client.Send("["+name+"] "+ futureMessage);
+                    futureMessage = "";
+                }
+                Engine.Render();
+                Keyboard.Clear();
             }
-
-            Keyboard.Clear();
         }
         catch (Exception e){Debug.LogError(e.getMessage());}
     }

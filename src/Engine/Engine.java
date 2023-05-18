@@ -108,6 +108,7 @@ public class Engine {
         MenuActual = newMenu;
         clearConsole();
         MenuActual.Start();
+        Keyboard.Clear();
         Engine.Render();
     }
     /**

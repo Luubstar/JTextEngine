@@ -8,6 +8,7 @@ public class Rainbow extends Menu{
 
     String[] colores = {Colors.RED, Colors.YELLOW, Colors.GREEN,Colors.CYAN, Colors.BLUE, Colors.MAGENTA};
     int desfase = 0;
+
     @Override
     public String Frame() {
         String res = "";
@@ -26,7 +27,6 @@ public class Rainbow extends Menu{
         if (desfase >= colores.length){desfase -= colores.length;}
         if (Keyboard.IsLastKeyOfType("Enter")){ Engine.SetMenu( new StartMenu());}
         Keyboard.Clear();
-
         Engine.Render();
     }
 }
