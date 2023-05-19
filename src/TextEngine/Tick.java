@@ -65,20 +65,19 @@ public class Tick extends Thread {
     }
 
     static String MainF(String frame, String lastFrame, String extra){
-    Profiler.StartMeasure("Render");
-    frame = Engine.Draw();
-    if  (!frame.equals( extra + lastFrame)){
-        Engine.clearConsole();
-        Engine.print(extra + frame);
-        System.out.flush();
-        lastFrame = frame;
-    }
-    Profiler.EndMeasure("Render");
-    return lastFrame;
-    }
+    
+        frame = Engine.Draw();
+        if  (!frame.equals( extra + lastFrame)){
+            Engine.clearConsole();
+            Engine.print(extra + frame);
+            System.out.flush();
+            lastFrame = frame;
+        }
+        return lastFrame;
+        }
 
     void RenderF(){
-
+        Profiler.StartMeasure("Render");
         Engine.CheckIfResized();
 
         if (PrintNextFrame){
@@ -89,6 +88,7 @@ public class Tick extends Thread {
             lastFrame = MainF(frame, lastFrame, Eframe);
             PrintNextFrame = false;
         }
+        Profiler.EndMeasure("Render");
     }
 
     public static void Render(){
