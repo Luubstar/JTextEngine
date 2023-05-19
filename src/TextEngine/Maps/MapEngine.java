@@ -14,7 +14,11 @@ import java.io.ObjectOutputStream;
 
 public class MapEngine {
     
-
+    /**
+     * Loads in the map the new set of tiles
+     * @param map
+     * @param NewTiles
+     */
     public static void updateMap(MapObject map, Tile[][] NewTiles){
         int Width = map.getWidth();
         int Height = map.getHeight();
@@ -24,6 +28,11 @@ public class MapEngine {
         map.setTiles(NewTiles);
     }
 
+    /**
+     * Loads in the map the new set of tiles
+     * @param map
+     * @param NewTiles
+     */
     public static void updateMap(MapObject map, List<Tile> NewTiles){
         
         int Width = map.getWidth();
@@ -50,6 +59,11 @@ public class MapEngine {
         map.setTiles(Tiles);
     }
 
+    /**
+     * Loads in the map the new set of tiles
+     * @param map
+     * @param NewTiles
+     */
     public static void updateMap(MapObject map, Tile[] NewTiles){
 
         int Width = map.getWidth();
@@ -74,6 +88,11 @@ public class MapEngine {
         map.setTiles(Tiles);
     }
 
+    /**
+     * Returns the map as string
+     * @param map
+     * @return
+     */
     public static String printMap(MapObject map){
         String res = "";
         for (int i = 0; i < map.getHeight(); i++){
@@ -86,6 +105,14 @@ public class MapEngine {
         return res;
     }
 
+    /**
+     * Returns the map as string, but only the Tiles inside the Field Of View, starting in the coordinate (centerW, centerH)
+     * @param map
+     * @param centerW
+     * @param centerH
+     * @param FOV
+     * @return
+     */
     public static String printMap(MapObject map, int centerW, int centerH, int FOV){
         try{
             String res = "";
@@ -109,6 +136,13 @@ public class MapEngine {
             return null;}
     }
 
+    /**
+     * Saves the map in the file (name)
+     * @param map
+     * @param name
+     * @return
+     * @throws IOException
+     */
     public static boolean saveMap(MapObject map, String name) throws IOException{
         
         FileOutputStream fileOut = new FileOutputStream(name);
@@ -120,6 +154,13 @@ public class MapEngine {
         
     }
 
+    /**
+     * Loads and returns map from the file (name)
+     * @param name
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static MapObject loadMap(String name) throws IOException, ClassNotFoundException{
         FileInputStream fileIn = new FileInputStream(name);
         ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -129,6 +170,13 @@ public class MapEngine {
         return new MapObject(tiles[0].length, tiles.length,tiles);
     }
 
+    /**
+     * Checks if point exists in map
+     * @param map
+     * @param W
+     * @param H
+     * @return
+     */
     public static boolean isPointValid(MapObject map, int W, int H){return map.isPointValid(W, H);}
 
     

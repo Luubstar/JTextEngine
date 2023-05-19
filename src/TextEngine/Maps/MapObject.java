@@ -36,6 +36,12 @@ public class MapObject {
         Tiles = new Tile[Height][Width];
     }
 
+    /**
+     * Changes the tile in the coordinates (Width, Height)
+     * @param Width
+     * @param Height
+     * @param newTile
+     */
     public void setTile(int Width, int Height, Tile newTile){
         try{
             Tiles[Height][Width] = newTile;
@@ -46,6 +52,12 @@ public class MapObject {
         catch(Exception e){Debug.LogError(e.getMessage());}
     }
 
+    /**
+     * Returns tile from the coordinates
+     * @param Width
+     * @param Height
+     * @return
+     */
     public Tile getTile(int Width, int Height){
         try{
             return Tiles[Height][Width];
@@ -59,11 +71,21 @@ public class MapObject {
             return null;}
     }
 
-
+    /**
+     * Checks if point exists in the map
+     * @param W
+     * @param H
+     * @return
+     */
     public boolean isPointValid(int W, int H){
         return ( (H < getHeight() && H >= 0 ) && (W < getWidth() && W >= 0));
     }
 
+    /**
+     * Returns the tiles with a tag
+     * @param tag
+     * @return
+     */
     public Tile[] getTilesByTag(String tag){
         List<Tile> TWithTag = new ArrayList<>(); 
         for (Tile[] row : Tiles){
