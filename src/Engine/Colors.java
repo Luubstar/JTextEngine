@@ -1,6 +1,7 @@
 package Engine;
  
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
  * (Thx dain ;))
  *
  */
-public final class Colors {
+public final class Colors implements Serializable{
 
 	// Color code strings from:
 	// http://www.topmudsites.com/forums/mud-coding/413-java-Colors.html

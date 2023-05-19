@@ -4,7 +4,9 @@ import Engine.Debug.Debug;
 
 public class SoundEngine {
 
-    public static float GeneralVolume = 0.75f;
+
+    public static float DefaultVolume = 0.75f;
+    public static float GeneralVolume = 1f;
 
     /**
      * Plays a Sound 1 time
@@ -40,12 +42,9 @@ public class SoundEngine {
      * Sets the default volume of all sounds
      * @param NewVol
      */
-    public void setDefaultVolume(float NewVol){
-        try{
-            if (!(NewVol > 1 && NewVol < 0)){GeneralVolume = NewVol;}
-            else{throw new Exception("Float value out of bounds");}
-        }
-        catch(Exception e){Debug.LogError(e.getMessage());}
+    public void setDefaultVolume(float NewVol) throws IllegalArgumentException{
+        if (!(NewVol > 1f && NewVol < 0f)){DefaultVolume = NewVol;}
+        else{throw new IllegalArgumentException("Float value out of bounds");}
     }
     
 
@@ -53,5 +52,20 @@ public class SoundEngine {
      * Returns the default volume value
      * @return
      */    
-    public float getDefaultVolume(){return GeneralVolume;}
+    public float getDefaultVolume(){return DefaultVolume;}
+
+    /**
+     * Sets the general volume for all sounds. Their volume will be multiplied by the general value
+     * @param NewVol
+     */
+    public void setGeneralVolume(float NewVol) throws IllegalArgumentException{
+        if (!(NewVol > 1f && NewVol < 0f)){GeneralVolume = NewVol;}
+        else{throw new IllegalArgumentException("Float value out of bounds");}
+    }
+    
+    /**
+     * Returns the general volume value
+     * @return
+     */    
+    public float getGeneralVolume(){return GeneralVolume;}
 }

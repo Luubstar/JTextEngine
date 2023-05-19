@@ -61,14 +61,14 @@ public class Sound extends Thread {
                 clip = AudioSystem.getClip();
                 clip.open(AudioIS);
 
-                this.setVolume(volume);
+                this.setVolume(volume * SoundEngine.GeneralVolume);
                 this.file = soundFile;
             
             }
             else if(extension.equals(".mp3")){
                 FileInputStream IS = new FileInputStream(soundFile);
                 player = new Player(IS);
-                this.volume = mapToDecibels(volume);
+                this.volume = mapToDecibels(volume * SoundEngine.GeneralVolume);
                 this.file = soundFile;
             }
             else{
@@ -81,7 +81,7 @@ public class Sound extends Thread {
     public static Sound fromPath(String filepath){
         try{
             File file = new File(filepath);
-            return new Sound(file, SoundEngine.GeneralVolume);
+            return new Sound(file, SoundEngine.DefaultVolume * SoundEngine.GeneralVolume);
         }
         catch(Exception e){Debug.LogError(e.getMessage()); return null;}
     }
@@ -89,7 +89,7 @@ public class Sound extends Thread {
     public static Sound fromPath(String filepath, int volume){
         try{
             File file = new File(filepath);
-            return new Sound(file, volume);
+            return new Sound(file, volume * SoundEngine.GeneralVolume);
         }
         catch(Exception e){Debug.LogError(e.getMessage()); return null;}
     }
@@ -100,14 +100,14 @@ public class Sound extends Thread {
                 if (!(volume > 1 && volume < 0)){
                     FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 
-                    float gain = volume > 0 ? (float) (Math.log10(volume) * 20) : -80; 
+                    float gain = volume * SoundEngine.GeneralVolume > 0 ? (float) (Math.log10(volume * SoundEngine.GeneralVolume) * 20) : -80; 
 
                     gainControl.setValue(gain);
                 }
                 else{throw new Exception("Float value out of bounds");}
             }
             else if (extension.equals(".mp3")){
-                this.volume = mapToDecibels(volume);
+                this.volume = mapToDecibels(volume * SoundEngine.GeneralVolume);
             }
         }
         catch(Exception e){Debug.LogError(e.getMessage());}

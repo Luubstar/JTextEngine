@@ -6,7 +6,7 @@ import Engine.Menu;
 
 public class StartMenu extends Menu {
 
-    String[] opciones = {"   Pantalla de carga", "   Prueba de colores", "   Prueba de sonido", "   Prueba de entrada", "   Prueba de red", "   Salir"};
+    String[] opciones = {"   Pantalla de carga", "   Prueba de colores", "   Prueba de sonido", "   Prueba de entrada", "   Prueba de red", "   Prueba de mapas", "   Salir"};
     int pos = 0;
     String Titulo = """
         ████████╗███████╗███████╗████████╗    ███╗   ███╗███████╗███╗   ██╗██╗   ██╗
@@ -47,6 +47,7 @@ public class StartMenu extends Menu {
             else if (pos == 2 ){Engine.SetMenu( new TestSound());}
             else if (pos == 3 ){Engine.SetMenu( new TestInput());}
             else if (pos == 4 ){Engine.SetMenu( new TestChat());}
+            else if (pos == 5 ){Engine.SetMenu( new TestMap());}
             else{ System.exit(1);}
             
         }

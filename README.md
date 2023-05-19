@@ -13,7 +13,7 @@ Here're some of the project's best features:
 *   Easy instalation
 *   Integrated debug and profiler system
 *   Simple network system
-*   Integrated entry system
+*   Integrated input, sound and color system
 *   Totally documented
 *   Packed with examples 
 *   Now with a Wiki!
