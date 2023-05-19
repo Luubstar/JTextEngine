@@ -28,7 +28,7 @@ Here're some of the project's best features:
 
 <p> It is recommended to use consoles like Kitty, because they hardware accelerate the console and prevent flickering that can occur when drawing many frames. 
 
-[Get it](https://sw.kovidgoyal.net/kitty/)
+[Get kitty from here](https://sw.kovidgoyal.net/kitty/)
 
 <h2>🛡️ License:</h2>
 
