@@ -3,18 +3,20 @@
 import Engine.Engine;
 import Engine.Keyboard;
 import Engine.Menu;
+import Engine.Engine.HAling;
+import Engine.Engine.VAling;
 
 public class StartMenu extends Menu {
 
     String[] opciones = {"   Pantalla de carga", "   Prueba de colores", "   Prueba de sonido", "   Prueba de entrada", "   Prueba de red", "   Prueba de mapas", "   Salir"};
     int pos = 0;
     String Titulo = """
-        ████████╗███████╗███████╗████████╗    ███╗   ███╗███████╗███╗   ██╗██╗   ██╗
-        ╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝    ████╗ ████║██╔════╝████╗  ██║██║   ██║
-           ██║   █████╗  ███████╗   ██║       ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║
-           ██║   ██╔══╝  ╚════██║   ██║       ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║
-           ██║   ███████╗███████║   ██║       ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝
-           ╚═╝   ╚══════╝╚══════╝   ╚═╝       ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝
+████████╗███████╗███████╗████████╗    ███╗   ███╗███████╗███╗   ██╗██╗   ██╗
+╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝    ████╗ ████║██╔════╝████╗  ██║██║   ██║
+   ██║   █████╗  ███████╗   ██║       ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║
+   ██║   ██╔══╝  ╚════██║   ██║       ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║
+   ██║   ███████╗███████║   ██║       ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝
+   ╚═╝   ╚══════╝╚══════╝   ╚═╝       ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝
     
         """;
 
@@ -25,7 +27,7 @@ public class StartMenu extends Menu {
             if (i== pos){res += ">" + opciones[i].substring(1) + "\n";}
             else{res += opciones[i] + "\n"; }
         }
-        return res;
+        return Engine.VerticalAling( VAling.CENTER,Engine.HorizontalAling(HAling.CENTER, res));
     }
 
     @Override
