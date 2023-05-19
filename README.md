@@ -26,6 +26,8 @@ Here're some of the project's best features:
 
 <p>3. Enjoy coding!</p>
 
+<p> It is recommended to use consoles like Kitty, because they hardware accelerate the console and prevent flickering that can occur when drawing many frames. [Get it](https://sw.kovidgoyal.net/kitty/)
+
 <h2>🛡️ License:</h2>
 
 This project is licensed under the MIT license
