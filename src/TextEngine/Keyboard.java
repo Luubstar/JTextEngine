@@ -1,4 +1,4 @@
-package Engine;
+package TextEngine;
  
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;

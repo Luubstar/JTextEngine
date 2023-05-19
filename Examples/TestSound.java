@@ -1,10 +1,10 @@
-package Examples;
 
-import Engine.Engine;
-import Engine.Keyboard;
-import Engine.Menu;
-import Engine.Sound;
-import Engine.SoundEngine;
+
+import TextEngine.Engine;
+import TextEngine.Keyboard;
+import TextEngine.Menu;
+import TextEngine.Sound;
+import TextEngine.SoundEngine;
 
 public class TestSound extends Menu {
     @Override

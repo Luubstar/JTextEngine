@@ -1,8 +1,9 @@
-package Engine.Maps;
+package TextEngine.Maps;
 
 import java.util.ArrayList;
 import java.util.List;
-import Engine.Debug.Debug;
+
+import TextEngine.Debug.Debug;
 
 public class MapObject {
 

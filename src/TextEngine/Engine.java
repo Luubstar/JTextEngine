@@ -1,18 +1,33 @@
-package Engine;
+package TextEngine;
  
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import Engine.Debug.Debug;
-import Engine.Debug.Profiler;
+import TextEngine.Debug.Debug;
+import TextEngine.Debug.Profiler;
 
 public class Engine {
     private static int tick = 50;
     private static Menu MenuActual;
     private static int WIDTH;
     private static int HEIGHT;
+
+    private static final String SPACE = " ";
+    private static final String VSPACE = "\n";
+
+    public enum VAling{
+        UP,
+        DOWN,
+        CENTER
+    }
+
+    public enum HAling{
+        LEFT,
+        RIGTH,
+        CENTER
+    }
 
     /**
      * This function starts the program by initializing various components and starting the tick clock.
@@ -231,4 +246,57 @@ public class Engine {
         
         return result;
     }
+
+
+    /**
+     * Aligns text horizontally according to the requested aligner
+     * @param aling
+     * @param text
+     * @return
+     */
+    public static String HorizontalAling(HAling aling, String text){
+        String[] lines = text.split("\n");
+        String finalLine = "";
+        for (String line: lines){
+            if(line.length() >= WIDTH || line.length() == 0 || line == null){}
+            else{
+                String cleanText = Colors.clearColor(line);
+                int SpaceNeeded = WIDTH - cleanText.length();
+
+                if (aling == HAling.CENTER){
+                    if (SpaceNeeded%2 != 0){SpaceNeeded--;}
+                    line = SPACE.repeat(SpaceNeeded/2) + line + SPACE.repeat(SpaceNeeded/2);
+                }
+                else if (aling == HAling.RIGTH){line = SPACE.repeat(SpaceNeeded) + line;}
+                else if (aling == HAling.LEFT){line = line + SPACE.repeat(SpaceNeeded);}
+            }
+
+            finalLine += line + "\n";
+        }
+        return finalLine;
+    }
+
+    /**
+     * Aligns text vertically according to the requested aligner
+     * @param aling
+     * @param text
+     * @return
+     */
+    public static String VerticalAling(VAling aling, String text){
+        String[] lines = text.split("\n");
+        if (lines.length <= HEIGHT){
+            
+            int SpaceNeeded = HEIGHT - lines.length;
+
+            if (aling == VAling.CENTER){
+                if (SpaceNeeded%2 != 0){SpaceNeeded--;}
+                text = VSPACE.repeat(SpaceNeeded/2) + text + VSPACE.repeat((SpaceNeeded/2) - 2);
+            }
+            else if (aling == VAling.DOWN){text = VSPACE.repeat(SpaceNeeded) + text;}
+            else if (aling == VAling.UP){text = text + VSPACE.repeat(SpaceNeeded-2);}
+            return text;
+        }
+        return text;
+    }
+
 }

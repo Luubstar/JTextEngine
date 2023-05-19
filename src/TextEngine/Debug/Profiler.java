@@ -1,4 +1,4 @@
-package Engine.Debug;
+package TextEngine.Debug;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,8 +13,8 @@ import org.knowm.xchart.PieChartBuilder;
 import org.knowm.xchart.style.PieStyler.LabelType;
 import org.knowm.xchart.style.Styler.ChartTheme;
 
-import Engine.Colors;
-import Engine.Engine;
+import TextEngine.Colors;
+import TextEngine.Engine;
 
 public class Profiler {
     private static ArrayList<ProfileMeasure> ProfileData = new ArrayList<>();

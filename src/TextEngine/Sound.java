@@ -1,9 +1,9 @@
-package Engine;
+package TextEngine;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
-import Engine.Debug.Debug;
+import TextEngine.Debug.Debug;
 
 import javax.sound.sampled.AudioInputStream;
 

@@ -1,13 +1,15 @@
-package Examples;
+
 
 import java.util.List;
+
+import TextEngine.Colors;
+import TextEngine.Engine;
+import TextEngine.Keyboard;
+import TextEngine.Menu;
+import TextEngine.Debug.Debug;
+import TextEngine.Maps.*;
+
 import java.util.ArrayList;
-import Engine.Colors;
-import Engine.Menu;
-import Engine.Maps.*;
-import Engine.Keyboard;
-import Engine.Engine;
-import Engine.Debug.Debug;
 
 public class TestMap extends Menu {
 
