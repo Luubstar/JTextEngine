@@ -1,4 +1,4 @@
-package Engine;
+package TextEngine;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;

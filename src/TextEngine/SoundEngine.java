@@ -1,6 +1,6 @@
-package Engine;
+package TextEngine;
 
-import Engine.Debug.Debug;
+import TextEngine.Debug.Debug;
 
 public class SoundEngine {
 

@@ -1,7 +1,9 @@
-package Engine.Maps;
+package TextEngine.Maps;
 
 import java.util.List;
-import Engine.Debug.Debug;
+
+import TextEngine.Debug.Debug;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

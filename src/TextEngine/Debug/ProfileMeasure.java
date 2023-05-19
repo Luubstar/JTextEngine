@@ -1,9 +1,9 @@
-package Engine.Debug;
+package TextEngine.Debug;
 
 import java.text.DecimalFormat;
 
-import Engine.Colors;
-import Engine.Engine;
+import TextEngine.Colors;
+import TextEngine.Engine;
 
 public class ProfileMeasure {
     private String Tag;

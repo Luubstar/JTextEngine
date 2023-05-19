@@ -1,10 +1,10 @@
 
 
-import Engine.Engine;
-import Engine.Keyboard;
-import Engine.Menu;
-import Engine.Engine.HAling;
-import Engine.Engine.VAling;
+import TextEngine.Engine;
+import TextEngine.Keyboard;
+import TextEngine.Menu;
+import TextEngine.Engine.HAling;
+import TextEngine.Engine.VAling;
 
 public class StartMenu extends Menu {
 

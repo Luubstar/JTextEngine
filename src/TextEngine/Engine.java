@@ -1,12 +1,12 @@
-package Engine;
+package TextEngine;
  
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import Engine.Debug.Debug;
-import Engine.Debug.Profiler;
+import TextEngine.Debug.Debug;
+import TextEngine.Debug.Profiler;
 
 public class Engine {
     private static int tick = 50;

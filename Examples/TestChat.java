@@ -1,10 +1,10 @@
 
 
-import Engine.Engine;
-import Engine.Keyboard;
-import Engine.Menu;
-import Engine.NetworkClient;
-import Engine.Debug.Debug;
+import TextEngine.Engine;
+import TextEngine.Keyboard;
+import TextEngine.Menu;
+import TextEngine.NetworkClient;
+import TextEngine.Debug.Debug;
 
 public class TestChat extends Menu{
 

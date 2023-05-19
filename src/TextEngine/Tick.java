@@ -1,7 +1,7 @@
-package Engine;
+package TextEngine;
 
-import Engine.Debug.Debug;
-import Engine.Debug.Profiler;
+import TextEngine.Debug.Debug;
+import TextEngine.Debug.Profiler;
 
 public class Tick extends Thread {
     String frame = "";

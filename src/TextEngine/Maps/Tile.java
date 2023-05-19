@@ -1,7 +1,7 @@
-package Engine.Maps;
+package TextEngine.Maps;
 import java.io.Serializable;
 
-import Engine.Colors;
+import TextEngine.Colors;
 
 public class Tile implements Serializable{
     

@@ -1,8 +1,9 @@
 
 
 import java.util.Scanner;
-import Engine.ClientObject;
-import Engine.NetworkHost;
+
+import TextEngine.ClientObject;
+import TextEngine.NetworkHost;
 
 public class TestServer extends NetworkHost {
 
