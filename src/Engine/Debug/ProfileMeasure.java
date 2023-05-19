@@ -61,7 +61,8 @@ public class ProfileMeasure {
             LastTimeData = ((float) timeAcummulated)/(float) measures;
             measures = 0;
             timeAcummulated = 0;
-            Engine.Render();
+
+            if (Engine.getProfilerMode()){Engine.Render();}
         }
     }
 
