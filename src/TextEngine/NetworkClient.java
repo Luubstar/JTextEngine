@@ -1,7 +1,11 @@
 package TextEngine;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 
 public class NetworkClient {
 
@@ -25,7 +29,7 @@ public class NetworkClient {
     /**
      * Connects with the host and port of the client
      */
-    public void Connect() throws Exception {
+    public void Connect() throws SocketException, IOException, UnknownHostException {
         socket = new Socket(host, puerto);
         socket.setSoTimeout(Timeout);
         entrada = new DataInputStream(socket.getInputStream());
@@ -35,9 +39,9 @@ public class NetworkClient {
     /**
      * Sends data to host
      * @param mensaje -> String
-     * @throws Exception
+     * @throws IOException
      */
-    public void Send(String mensaje) throws Exception {
+    public void Send(String mensaje) throws IOException{
         salida.writeInt(mensaje.getBytes().length);
         salida.write(mensaje.getBytes());
     }
@@ -45,9 +49,9 @@ public class NetworkClient {
     /**
      * Sends data to host
      * @param mensaje -> byte[]
-     * @throws Exception
+     * @throws IOException
      */
-    public void Send(byte[] mensaje) throws Exception {
+    public void Send(byte[] mensaje) throws IOException{
         salida.writeInt(mensaje.length);
         salida.write(mensaje);
     }
@@ -55,9 +59,10 @@ public class NetworkClient {
     /**
      * Receives String from host if available
      * @return
-     * @throws Exception
+     * @throws IOException
+     * @throws UnsupportedEncodingException
      */
-    public String ReceiveString() throws Exception {
+    public String ReceiveString() throws IOException, UnsupportedEncodingException{
         if (entrada.available() > 0){
             int length = entrada.readInt();
             if (length > 0) {
@@ -74,9 +79,9 @@ public class NetworkClient {
     /**
      * Receives byte[] from host if available
      * @return
-     * @throws Exception
+     * @throws IOException
      */
-    public byte[] ReceiveByte() throws Exception {
+    public byte[] ReceiveByte() throws IOException {
         if( entrada.available() > 0){
             int length = entrada.readInt();
             if (length > 0) {
@@ -97,9 +102,9 @@ public class NetworkClient {
 
     /**
      * Closes the connection
-     * @throws Exception
+     * @throws IOException
      */
-    public void Close() throws Exception {
+    public void Close() throws IOException {
         Send(new byte[0]);
         entrada.close();
         salida.close();

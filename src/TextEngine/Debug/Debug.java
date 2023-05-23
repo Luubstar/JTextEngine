@@ -3,6 +3,7 @@ package TextEngine.Debug;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import TextEngine.Colors;
@@ -101,9 +102,9 @@ public class Debug {
     /**
      * Export logs as textfile
      * @param filepath -> file to export
-     * @throws Exception
+     * @throws IOException
      */
-    public static void ExportLogs(String filepath) throws Exception{
+    public static void ExportLogs(String filepath) throws IOException{
         
         File archivo = new File(filepath);
 

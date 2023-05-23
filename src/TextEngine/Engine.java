@@ -2,6 +2,7 @@ package TextEngine;
  
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -58,9 +59,9 @@ public class Engine {
 
     /**
      * Updates the terminal if needed
-     * @throws Exception
+     * @throws IOException
      */
-    private static void RedoTerminal() throws Exception{
+    private static void RedoTerminal() throws IOException{
     
         terminal = new DefaultTerminalFactory().createTerminal();
         screen = new TerminalScreen(terminal);
@@ -160,9 +161,9 @@ public class Engine {
 
     /**
      * Gets the user input and updates the menu
-     * @throws Exception
+     * @throws IOException
      */
-    public static void GetInput() throws Exception{
+    public static void GetInput() throws IOException{
         Keyboard.DetectInput();
         MenuActual.Update();
     }

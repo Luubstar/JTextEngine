@@ -1,9 +1,9 @@
 
-
 import java.util.Scanner;
 
 import TextEngine.ClientObject;
 import TextEngine.NetworkHost;
+import TextEngine.Debug.Debug;
 
 public class TestServer extends NetworkHost {
 
@@ -12,21 +12,36 @@ public class TestServer extends NetworkHost {
     boolean going = true;
 
     @Override
-    public void onClientConnected(ClientObject client) throws Exception {
-        SendToAll("[SERVER] Client has connected from " + client.clientSocket.getInetAddress().getHostAddress());
-        System.out.println("[SERVER] Client has connected from " + client.clientSocket.getInetAddress().getHostAddress());
+    public void onClientConnected(ClientObject client){
+        try{
+            SendToAll("[SERVER] Client has connected from " + client.clientSocket.getInetAddress().getHostAddress());
+            System.out.println("[SERVER] Client has connected from " + client.clientSocket.getInetAddress().getHostAddress());
+        }
+        catch(Exception e){
+            Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
+        }
     }
 
     @Override
-    public void onClientDisconnected(ClientObject client) throws Exception {
-        SendToAll("[SERVER] Client has disconnected from " + client.clientSocket.getInetAddress().getHostAddress());
-        System.out.println("[SERVER] Client has disconnected from " + client.clientSocket.getInetAddress().getHostAddress());
+    public void onClientDisconnected(ClientObject client){
+        try{
+            SendToAll("[SERVER] Client has disconnected from " + client.clientSocket.getInetAddress().getHostAddress());
+            System.out.println("[SERVER] Client has disconnected from " + client.clientSocket.getInetAddress().getHostAddress());
+        }
+        catch(Exception e){
+            Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
+        }
     }
 
     @Override
-    public void onRecieveFromClient(ClientObject client, byte[] data) throws Exception {
-        SendToAll(data);
-        System.out.println(new String(data,"UTF-8"));
+    public void onRecieveFromClient(ClientObject client, byte[] data) {
+        try{
+            SendToAll(data);
+            System.out.println(new String(data,"UTF-8"));
+        }
+        catch(Exception e){
+            Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
+        }
     }
 
     public static void main(String[] args) {

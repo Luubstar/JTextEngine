@@ -3,6 +3,7 @@ package TextEngine.Debug;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -174,9 +175,9 @@ public class Profiler {
      * Prints the last data of the profiler in filepath 
      * @param filepath
      * @param filter
-     * @throws Exception
+     * @throws IOException
      */
-    public static void ProfilerToFile(String filepath, String filter) throws Exception{
+    public static void ProfilerToFile(String filepath, String filter) throws IOException{
         File file = new File(filepath);
 
         FileWriter fw = new FileWriter(file);
@@ -198,9 +199,9 @@ public class Profiler {
     /**
      * Prints the last data of the profiler in filepath 
      * @param filepath
-     * @throws Exception
+     * @throws IOException
      */
-    public static void ProfilerToFile(String filepath) throws Exception{
+    public static void ProfilerToFile(String filepath) throws IOException{
         ProfilerToFile(filepath, getFilter());
     }
 
@@ -210,9 +211,9 @@ public class Profiler {
      * Exports the profiler as a piechart
      * @param filepath
      * @param filter
-     * @throws Exception
+     * @throws IOException
      */
-    public static void ExportPieChart(String filepath, String filter) throws Exception{
+    public static void ExportPieChart(String filepath, String filter) throws IOException{
         PieChart chart = new PieChartBuilder().width(800).height(600).title("Profilers").theme(ChartTheme.GGPlot2).build();
 
 
@@ -232,9 +233,9 @@ public class Profiler {
     /**
      * Exports the profiler as a piechart
      * @param filepath
-     * @throws Exception
+     * @throws IOException
      */
-    public static void ExportPieChart(String filepath) throws Exception{
+    public static void ExportPieChart(String filepath) throws IOException{
         ExportPieChart(filepath, getFilter());
     }
 
