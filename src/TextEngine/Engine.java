@@ -8,6 +8,10 @@ import java.io.InputStreamReader;
 import TextEngine.Debug.Debug;
 import TextEngine.Debug.Profiler;
 
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
+
 public class Engine {
     private static int tick = 50;
     private static Menu MenuActual;
@@ -16,6 +20,9 @@ public class Engine {
 
     private static final String SPACE = " ";
     private static final String VSPACE = "\n";
+
+    static TerminalScreen screen;
+	static Terminal terminal;
 
     public enum VAling{
         UP,
@@ -37,14 +44,30 @@ public class Engine {
      */
     public static void Start(Menu MenuInicial){
         try{
+            RedoTerminal();
             updateSize();
+
             Profiler.Start();
-            Keyboard.Start();
+            Keyboard.Start(terminal,screen);
             SetMenu(MenuInicial);
             Tick Ticker = new Tick();
             Ticker.start();
         }
         catch(Exception e){Debug.LogError(e.getMessage());}
+    }
+
+    /**
+     * Updates the terminal if needed
+     * @throws Exception
+     */
+    private static void RedoTerminal() throws Exception{
+    
+        terminal = new DefaultTerminalFactory().createTerminal();
+        screen = new TerminalScreen(terminal);
+        screen.startScreen();
+        screen.setCursorPosition(null); 
+    
+        Engine.clearConsole();
     }
 
     /**
@@ -56,6 +79,9 @@ public class Engine {
      * Renders the frame
      */
     public static void Render(){Tick.Render();}
+
+
+
 
     /**
      * Clears the console
