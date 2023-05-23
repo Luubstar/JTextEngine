@@ -2,6 +2,7 @@ package TextEngine;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +20,10 @@ public class NetworkHost{
      * 
      * @param port
      * @param host -> Host to start
-     * @throws Exception
+     * @throws IOException
+     * @throws SocketException
      */
-    public void Start(int port, NetworkHost host) throws Exception{
+    public void Start(int port, NetworkHost host) throws IOException, SocketException{
         serverSocket = new ServerSocket(port);
 
         while (going) {
@@ -45,27 +47,24 @@ public class NetworkHost{
      * Callback when client connects
      * 
      * @param client
-     * @throws Exception
      */
-    public void onClientConnected(ClientObject client) throws Exception{
+    public void onClientConnected(ClientObject client){
         System.out.println("connected");
     }
 
     /**
     * Callback when a client disconnects
     * @param client
-    * @throws Exception
     */
-    public void onClientDisconnected(ClientObject client) throws Exception{
+    public void onClientDisconnected(ClientObject client){
         System.out.println("disconnected");
     }
 
     /**
     * Callback when recieved data from a client
     * @param client
-    * @throws Exception
     */
-    public void onRecieveFromClient(ClientObject client, byte[] data) throws Exception{
+    public void onRecieveFromClient(ClientObject client, byte[] data){
         System.out.println("data");
     }
 

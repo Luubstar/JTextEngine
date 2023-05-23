@@ -9,8 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-
+import TextEngine.Engine;
 
 public class MapEngine {
     
@@ -128,11 +127,11 @@ public class MapEngine {
             return res;
         }
         catch(IndexOutOfBoundsException e){
-            Debug.LogError("Error, width or heigth is out of bounds. " + e.getMessage());
+            Debug.LogError("Error, width or heigth is out of bounds. " + e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
             return null;
         }
         catch(Exception e){
-            Debug.LogError(e.getMessage());
+            Engine.LogException(e);
             return null;}
     }
 

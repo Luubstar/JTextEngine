@@ -1,9 +1,10 @@
 package TextEngine;
  
+import java.io.IOException;
+
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 public class Keyboard  {
@@ -19,21 +20,17 @@ public class Keyboard  {
 
 	/**
 	 * Starts the keyboard system
-	 * @throws Exception
 	 */
-	public static void Start() throws Exception{
-
-		terminal = new DefaultTerminalFactory().createTerminal();
-		screen = new TerminalScreen(terminal);
-		screen.startScreen();
-		screen.setCursorPosition(null); 
+	public static void Start(Terminal t, TerminalScreen s){
+		terminal = t;
+		screen = s;
 	}
 
 	/**
 	 * Reads the input of the keyboard
-	 * @throws Exception
+	 * @throws IOException
 	 */
-	public static void DetectInput() throws Exception{
+	public static void DetectInput() throws IOException{
 		KeyStroke keyStroke = screen.pollInput();
 		if (keyStroke != null) {
 			if (keyStroke.getKeyType() != null) {
@@ -121,7 +118,7 @@ public class Keyboard  {
 	 * be used to prompt the user for input or provide context for the expected input.
 	 * @return The String result 
 	 */
-	public static String Scanner(String prefix) throws Exception{
+	public static String Scanner(String prefix) throws InterruptedException, IOException{
 		String res = "";
 		String laststring = "------------------------------";
 		while(getKeyType() != KeyTypeByString("Enter")){

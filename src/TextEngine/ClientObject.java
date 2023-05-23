@@ -52,7 +52,7 @@ public class ClientObject extends Thread {
             host.onClientDisconnected(this);
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
         }
     }
 

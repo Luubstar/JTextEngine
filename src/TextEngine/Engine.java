@@ -2,11 +2,16 @@ package TextEngine;
  
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import TextEngine.Debug.Debug;
 import TextEngine.Debug.Profiler;
+
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
 
 public class Engine {
     private static int tick = 50;
@@ -16,6 +21,9 @@ public class Engine {
 
     private static final String SPACE = " ";
     private static final String VSPACE = "\n";
+
+    static TerminalScreen screen;
+	static Terminal terminal;
 
     public enum VAling{
         UP,
@@ -37,14 +45,30 @@ public class Engine {
      */
     public static void Start(Menu MenuInicial){
         try{
+            RedoTerminal();
             updateSize();
+
             Profiler.Start();
-            Keyboard.Start();
+            Keyboard.Start(terminal,screen);
             SetMenu(MenuInicial);
             Tick Ticker = new Tick();
             Ticker.start();
         }
-        catch(Exception e){Debug.LogError(e.getMessage());}
+        catch(Exception e){LogException(e);}
+    }
+
+    /**
+     * Updates the terminal if needed
+     * @throws IOException
+     */
+    private static void RedoTerminal() throws IOException{
+    
+        terminal = new DefaultTerminalFactory().createTerminal();
+        screen = new TerminalScreen(terminal);
+        screen.startScreen();
+        screen.setCursorPosition(null); 
+    
+        Engine.clearConsole();
     }
 
     /**
@@ -68,7 +92,7 @@ public class Engine {
             else
                 new ProcessBuilder("clear").inheritIO().start().waitFor();
 
-        } catch (Exception e) {Debug.LogError(e.getMessage());}
+        } catch (Exception e) {LogException(e);}
     }
 
     /**
@@ -134,9 +158,9 @@ public class Engine {
 
     /**
      * Gets the user input and updates the menu
-     * @throws Exception
+     * @throws IOException
      */
-    public static void GetInput() throws Exception{
+    public static void GetInput() throws IOException{
         Keyboard.DetectInput();
         MenuActual.Update();
     }
@@ -153,7 +177,7 @@ public class Engine {
             }
             return name.substring(lastIndexOf);
         }
-        catch(Exception e){Debug.LogError(e.getMessage()); return "";}
+        catch(Exception e){LogException(e); return "";}
     }
 
     /**
@@ -190,7 +214,7 @@ public class Engine {
             String[] result = output.toString().split(" ");
             return result[1] + "x" + result[0];
         }
-        catch(Exception e){Debug.LogError(e.getMessage()); return "";}
+        catch(Exception e){LogException(e); return "";}
     }
 
     /**
@@ -215,7 +239,6 @@ public class Engine {
             Engine.Render();
         }
     }
-
     
     /**
      * This function updates the width and height variables based on the current size of the object.
@@ -246,7 +269,6 @@ public class Engine {
         
         return result;
     }
-
 
     /**
      * Aligns text horizontally according to the requested aligner
@@ -297,6 +319,20 @@ public class Engine {
             return text;
         }
         return text;
+    }
+
+    public static void LogException(Exception exc){
+        try{
+            Debug.LogError(exc.getMessage() + " (" + exc.getCause().getStackTrace()[0] + ")");
+        }
+        catch(Exception e){
+            if (exc.getStackTrace()[0] == null) {
+                Debug.LogError(exc.getMessage() + " (StackTrace not found, no more data is available)");
+            }
+            else{
+                Debug.LogError(exc.getMessage() + "("+ exc.getStackTrace()[0] +")");
+            }
+        }
     }
 
 }

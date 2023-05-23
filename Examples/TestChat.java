@@ -4,7 +4,6 @@ import TextEngine.Engine;
 import TextEngine.Keyboard;
 import TextEngine.Menu;
 import TextEngine.NetworkClient;
-import TextEngine.Debug.Debug;
 
 public class TestChat extends Menu{
 
@@ -29,7 +28,7 @@ public class TestChat extends Menu{
             client.Send("["+name+"] Se ha unido a la sala");
             
         }
-        catch (Exception e){Debug.LogError(e.getMessage());}
+        catch (Exception e){Engine.LogException(e);}
 
     }
 
@@ -55,7 +54,7 @@ public class TestChat extends Menu{
                 Keyboard.Clear();
             }
         }
-        catch (Exception e){Debug.LogError(e.getMessage());}
+        catch (Exception e){Engine.LogException(e);}
     }
 
     @Override
