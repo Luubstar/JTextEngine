@@ -326,7 +326,12 @@ public class Engine {
             Debug.LogError(exc.getMessage() + " (" + exc.getCause().getStackTrace()[0] + ")");
         }
         catch(Exception e){
-            Debug.LogError(e.getMessage() + " (StackTrace not found, no more data is available)");
+            if (exc.getStackTrace()[0] == null) {
+                Debug.LogError(exc.getMessage() + " (StackTrace not found, no more data is available)");
+            }
+            else{
+                Debug.LogError(exc.getMessage() + "("+ exc.getStackTrace()[0] +")");
+            }
         }
     }
 
