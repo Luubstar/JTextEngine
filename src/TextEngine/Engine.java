@@ -81,9 +81,6 @@ public class Engine {
      */
     public static void Render(){Tick.Render();}
 
-
-
-
     /**
      * Clears the console
      */
@@ -242,7 +239,6 @@ public class Engine {
             Engine.Render();
         }
     }
-
     
     /**
      * This function updates the width and height variables based on the current size of the object.
@@ -273,7 +269,6 @@ public class Engine {
         
         return result;
     }
-
 
     /**
      * Aligns text horizontally according to the requested aligner
