@@ -38,7 +38,7 @@ public class TestMap extends Menu {
             MapEngine.saveMap(mapa, "mapa.map");
             Keyboard.Clear();
         }
-        catch(Exception e){System.out.println(e.getMessage());}
+        catch(Exception e){System.out.println(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
 
     }
 
@@ -68,7 +68,7 @@ public class TestMap extends Menu {
         if (Keyboard.IsLastKeyOfType("Enter")){ 
             try{
                 mapa = MapEngine.loadMap("mapa.map");}
-            catch(Exception e){Debug.LogError(e.getMessage());}
+            catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
             Keyboard.Clear();
         }
 

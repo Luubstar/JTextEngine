@@ -39,6 +39,6 @@ public class TestServer extends NetworkHost {
             TestServer server = new TestServer();
             host.Start(port, server);
         }
-        catch(Exception e){System.out.println(e.getMessage());}
+        catch(Exception e){System.out.println(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
     }
 }

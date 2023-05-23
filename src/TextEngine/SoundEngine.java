@@ -35,7 +35,7 @@ public class SoundEngine {
             S.clip.close();
             S.AudioIS.close();
         }
-        catch(Exception e){Debug.LogError(e.getMessage());}
+        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
     }
 
     /**

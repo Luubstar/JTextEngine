@@ -29,7 +29,7 @@ public class TestChat extends Menu{
             client.Send("["+name+"] Se ha unido a la sala");
             
         }
-        catch (Exception e){Debug.LogError(e.getMessage());}
+        catch (Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
 
     }
 
@@ -55,7 +55,7 @@ public class TestChat extends Menu{
                 Keyboard.Clear();
             }
         }
-        catch (Exception e){Debug.LogError(e.getMessage());}
+        catch (Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
     }
 
     @Override

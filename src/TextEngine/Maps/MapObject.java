@@ -47,9 +47,9 @@ public class MapObject {
             Tiles[Height][Width] = newTile;
         }
         catch(IndexOutOfBoundsException e){
-            Debug.LogError("Error, width or heigth is out of bounds. " + e.getMessage());
+            Debug.LogError("Error, width or heigth is out of bounds. " + e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
         }
-        catch(Exception e){Debug.LogError(e.getMessage());}
+        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
     }
 
     /**
@@ -63,11 +63,11 @@ public class MapObject {
             return Tiles[Height][Width];
         }
         catch(IndexOutOfBoundsException e){
-            Debug.LogError("Error, width or heigth is out of bounds. " + e.getMessage());
+            Debug.LogError("Error, width or heigth is out of bounds. " + e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
             return null;
         }
         catch(Exception e){
-            Debug.LogError(e.getMessage());
+            Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
             return null;}
     }
 

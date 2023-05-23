@@ -53,7 +53,7 @@ public class Engine {
             Tick Ticker = new Tick();
             Ticker.start();
         }
-        catch(Exception e){Debug.LogError(e.getMessage());}
+        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
     }
 
     /**
@@ -94,7 +94,7 @@ public class Engine {
             else
                 new ProcessBuilder("clear").inheritIO().start().waitFor();
 
-        } catch (Exception e) {Debug.LogError(e.getMessage());}
+        } catch (Exception e) {Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
     }
 
     /**
@@ -179,7 +179,7 @@ public class Engine {
             }
             return name.substring(lastIndexOf);
         }
-        catch(Exception e){Debug.LogError(e.getMessage()); return "";}
+        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber()); return "";}
     }
 
     /**
@@ -216,7 +216,7 @@ public class Engine {
             String[] result = output.toString().split(" ");
             return result[1] + "x" + result[0];
         }
-        catch(Exception e){Debug.LogError(e.getMessage()); return "";}
+        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber()); return "";}
     }
 
     /**

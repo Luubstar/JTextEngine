@@ -43,7 +43,7 @@ public class Tick extends Thread {
                 }
                 Profiler.EndMeasure("WaitTime");
                 Profiler.EndMeasure("TickTime");
-            } catch (Exception e) {Debug.LogError(e.getMessage());}
+            } catch (Exception e) {Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
         }
     }
 

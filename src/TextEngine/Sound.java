@@ -48,7 +48,7 @@ public class Sound extends Thread {
             }
             else{throw new Exception("Error reproduciendo");}
 
-        } catch (Exception e){Debug.LogError(e.getMessage());}
+        } catch (Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
     }
     
     public Sound(File soundFile, float volume){
@@ -75,7 +75,7 @@ public class Sound extends Thread {
                 throw new Exception("Error loading the audio file " + extension);
             }
         }
-        catch (Exception e){Debug.LogError(e.getMessage());}
+        catch (Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
     }
 
     public static Sound fromPath(String filepath){
@@ -83,7 +83,7 @@ public class Sound extends Thread {
             File file = new File(filepath);
             return new Sound(file, SoundEngine.DefaultVolume * SoundEngine.GeneralVolume);
         }
-        catch(Exception e){Debug.LogError(e.getMessage()); return null;}
+        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber()); return null;}
     }
 
     public static Sound fromPath(String filepath, int volume){
@@ -91,7 +91,7 @@ public class Sound extends Thread {
             File file = new File(filepath);
             return new Sound(file, volume * SoundEngine.GeneralVolume);
         }
-        catch(Exception e){Debug.LogError(e.getMessage()); return null;}
+        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber()); return null;}
     }
 
     public void setVolume(float volume){
@@ -110,7 +110,7 @@ public class Sound extends Thread {
                 this.volume = mapToDecibels(volume * SoundEngine.GeneralVolume);
             }
         }
-        catch(Exception e){Debug.LogError(e.getMessage());}
+        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
     }
 
     public static float mapToDecibels(float value) {
@@ -125,13 +125,13 @@ public class Sound extends Thread {
 
             return decibels;
         }
-        catch (Exception e){Debug.LogError(e.getMessage()); return 0;}
+        catch (Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber()); return 0;}
     }
 
     public void setPosition(long Microseconds){
         if(extension.equals(".wav")){
             try{this.clip.setMicrosecondPosition(Microseconds);}
-            catch(Exception e){Debug.LogError(e.getMessage());}}
+            catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}}
         else if(extension.equals(".mp3")){Debug.Log("Los archivos de tipo .mp3 no admiten el comando ''.setPosition'", Colors.Red);}}
 
     public long getPosition(){

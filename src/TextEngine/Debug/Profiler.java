@@ -274,6 +274,6 @@ public class Profiler {
             }
             return logstring;
         }
-        catch(Exception e){Debug.LogError(e.getMessage());return "";}
+        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());return "";}
     }
 }

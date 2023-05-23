@@ -128,11 +128,11 @@ public class MapEngine {
             return res;
         }
         catch(IndexOutOfBoundsException e){
-            Debug.LogError("Error, width or heigth is out of bounds. " + e.getMessage());
+            Debug.LogError("Error, width or heigth is out of bounds. " + e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
             return null;
         }
         catch(Exception e){
-            Debug.LogError(e.getMessage());
+            Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
             return null;}
     }
 
