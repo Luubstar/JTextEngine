@@ -1,7 +1,5 @@
 package TextEngine;
 
-import TextEngine.Debug.Debug;
-
 public class SoundEngine {
 
 
@@ -35,7 +33,7 @@ public class SoundEngine {
             S.clip.close();
             S.AudioIS.close();
         }
-        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
+        catch(Exception e){Engine.LogException(e);}
     }
 
     /**

@@ -8,6 +8,9 @@ public class LoadMenu extends Menu {
     int pos = 0;
     String[] opciones = {"/", "/", "-", "-", "\\", "\\", "|", "|"};
 
+    @Override
+    public void Start() {
+    }
 
     @Override
     public String Frame() {

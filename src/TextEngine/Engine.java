@@ -54,7 +54,7 @@ public class Engine {
             Tick Ticker = new Tick();
             Ticker.start();
         }
-        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
+        catch(Exception e){LogException(e);}
     }
 
     /**
@@ -92,7 +92,7 @@ public class Engine {
             else
                 new ProcessBuilder("clear").inheritIO().start().waitFor();
 
-        } catch (Exception e) {Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
+        } catch (Exception e) {LogException(e);}
     }
 
     /**
@@ -177,7 +177,7 @@ public class Engine {
             }
             return name.substring(lastIndexOf);
         }
-        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber()); return "";}
+        catch(Exception e){LogException(e); return "";}
     }
 
     /**
@@ -214,7 +214,7 @@ public class Engine {
             String[] result = output.toString().split(" ");
             return result[1] + "x" + result[0];
         }
-        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber()); return "";}
+        catch(Exception e){LogException(e); return "";}
     }
 
     /**
@@ -319,6 +319,15 @@ public class Engine {
             return text;
         }
         return text;
+    }
+
+    public static void LogException(Exception exc){
+        try{
+            Debug.LogError(exc.getMessage() + " (" + exc.getCause().getStackTrace()[0] + ")");
+        }
+        catch(Exception e){
+            Debug.LogError(e.getMessage() + " (StackTrace not found, no more data is available)");
+        }
     }
 
 }

@@ -9,8 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-
+import TextEngine.Engine;
 
 public class MapEngine {
     
@@ -132,7 +131,7 @@ public class MapEngine {
             return null;
         }
         catch(Exception e){
-            Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
+            Engine.LogException(e);
             return null;}
     }
 

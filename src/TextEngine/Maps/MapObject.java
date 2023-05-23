@@ -2,7 +2,7 @@ package TextEngine.Maps;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import TextEngine.Engine;
 import TextEngine.Debug.Debug;
 
 public class MapObject {
@@ -49,7 +49,7 @@ public class MapObject {
         catch(IndexOutOfBoundsException e){
             Debug.LogError("Error, width or heigth is out of bounds. " + e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
         }
-        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
+        catch(Exception e){Engine.LogException(e);}
     }
 
     /**
@@ -67,7 +67,7 @@ public class MapObject {
             return null;
         }
         catch(Exception e){
-            Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
+            Engine.LogException(e);
             return null;}
     }
 

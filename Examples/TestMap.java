@@ -6,7 +6,6 @@ import TextEngine.Colors;
 import TextEngine.Engine;
 import TextEngine.Keyboard;
 import TextEngine.Menu;
-import TextEngine.Debug.Debug;
 import TextEngine.Maps.*;
 
 import java.util.ArrayList;
@@ -68,7 +67,7 @@ public class TestMap extends Menu {
         if (Keyboard.IsLastKeyOfType("Enter")){ 
             try{
                 mapa = MapEngine.loadMap("mapa.map");}
-            catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());}
+            catch(Exception e){Engine.LogException(e);}
             Keyboard.Clear();
         }
 

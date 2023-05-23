@@ -190,7 +190,7 @@ public class Debug {
             }
             return logstring;
         }
-        catch(Exception e){Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());return "";}
+        catch(Exception e){Engine.LogException(e);return "";}
     }
 }
 

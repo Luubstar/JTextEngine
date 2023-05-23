@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 import TextEngine.ClientObject;
 import TextEngine.NetworkHost;
-import TextEngine.Debug.Debug;
+import TextEngine.Engine;
 
 public class TestServer extends NetworkHost {
 
@@ -18,7 +18,7 @@ public class TestServer extends NetworkHost {
             System.out.println("[SERVER] Client has connected from " + client.clientSocket.getInetAddress().getHostAddress());
         }
         catch(Exception e){
-            Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
+            Engine.LogException(e);;
         }
     }
 
@@ -29,7 +29,7 @@ public class TestServer extends NetworkHost {
             System.out.println("[SERVER] Client has disconnected from " + client.clientSocket.getInetAddress().getHostAddress());
         }
         catch(Exception e){
-            Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
+            Engine.LogException(e);
         }
     }
 
@@ -40,7 +40,7 @@ public class TestServer extends NetworkHost {
             System.out.println(new String(data,"UTF-8"));
         }
         catch(Exception e){
-            Debug.LogError(e.getMessage() + " " + e.getStackTrace()[0].getLineNumber());
+            Engine.LogException(e);
         }
     }
 
