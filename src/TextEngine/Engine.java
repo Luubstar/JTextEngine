@@ -12,7 +12,6 @@ import TextEngine.Debug.Profiler;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-
 public class Engine {
     private static int tick = 50;
     private static Menu MenuActual;

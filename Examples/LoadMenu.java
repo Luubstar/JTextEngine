@@ -1,5 +1,4 @@
 
-
 import TextEngine.Engine;
 import TextEngine.Keyboard;
 import TextEngine.Menu;
@@ -7,7 +6,7 @@ import TextEngine.Menu;
 public class LoadMenu extends Menu {
     int pos = 0;
     String[] opciones = {"/", "/", "-", "-", "\\", "\\", "|", "|"};
-
+    int size = 14;
 
     @Override
     public String Frame() {
@@ -31,6 +30,7 @@ public class LoadMenu extends Menu {
         pos++;
         if (pos >= opciones.length*2){pos = 0;}
         if (Keyboard.IsLastKeyOfType("Enter")){ Engine.SetMenu( new StartMenu());}
+        
         Engine.Render();
         Keyboard.Clear();
     }
