@@ -61,7 +61,7 @@ public class Engine {
      * @throws IOException
      */
     private static void RedoTerminal() throws IOException{
-    
+
         terminal = new DefaultTerminalFactory().createTerminal();
         screen = new TerminalScreen(terminal);
         screen.startScreen();
@@ -322,13 +322,24 @@ public class Engine {
 
     public static void LogException(Exception exc){
         try{
+            String trace = "";
+            for (var t : exc.getCause().getStackTrace()){
+                trace += t +"\n";
+            }
+            System.out.println(exc.getMessage() + " (" + trace+ ")");
             Debug.LogError(exc.getMessage() + " (" + exc.getCause().getStackTrace()[0] + ")");
         }
         catch(Exception e){
+            String ntrace = "";
+            for (var t : exc.getStackTrace()){
+                ntrace += t +"\n";
+            }
             if (exc.getStackTrace()[0] == null) {
+                System.out.println(exc.getMessage() + " (StackTrace not found, no more data is available)");
                 Debug.LogError(exc.getMessage() + " (StackTrace not found, no more data is available)");
             }
             else{
+                System.out.println(exc.getMessage() + "("+ ntrace+")");
                 Debug.LogError(exc.getMessage() + "("+ exc.getStackTrace()[0] +")");
             }
         }
