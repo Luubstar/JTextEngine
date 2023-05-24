@@ -1,7 +1,6 @@
 package TextEngine;
  
 import java.io.IOException;
-
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -14,6 +13,9 @@ public class Keyboard  {
     public static int pos = 0;
 	private static char LastChar;
 	private static KeyType LastKeyType;
+	private static boolean Shift;
+	private static boolean Control;
+	private static boolean Alt;
 
 	static TerminalScreen screen;
 	static Terminal terminal;
@@ -44,6 +46,10 @@ public class Keyboard  {
 				}
 			}
 			else{Clear();}
+			Shift = keyStroke.isShiftDown();
+			Control = keyStroke.isCtrlDown();
+			Alt = keyStroke.isAltDown();
+
 		}
 	}
 	
@@ -68,6 +74,10 @@ public class Keyboard  {
 	 * @return
 	 */
 	public static KeyType getKeyType() {return LastKeyType;}
+
+	public static boolean isShiftPressed(){return Shift;}
+	public static boolean isControlPressed(){return Control;}
+	public static boolean isAltPressed(){return Alt;}
 
 	/**
 	 * Cleans the keyboard and lastKey is now null

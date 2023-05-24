@@ -6,7 +6,6 @@ import TextEngine.Menu;
 public class LoadMenu extends Menu {
     int pos = 0;
     String[] opciones = {"/", "/", "-", "-", "\\", "\\", "|", "|"};
-    int size = 14;
 
     @Override
     public String Frame() {

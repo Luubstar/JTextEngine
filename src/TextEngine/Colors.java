@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Usage:
@@ -57,8 +59,6 @@ public final class Colors implements Serializable{
 	public static final String	BACKGROUND_CYAN		= "\u001B[46m";
 	public static final String	BACKGROUND_WHITE	= "\u001B[47m";
 
-	public static final String[] ListOfColors = {SANE, HIGH_INTENSITY,LOW_INTENSITY,BOLD,ITALIC,UNDERLINE,BLINK,RAPID_BLINK,REVERSE_VIDEO,INVISIBLE_TEXT,BLACK,RED,GREEN,YELLOW, BLUE, MAGENTA, CYAN, WHITE, BACKGROUND_BLACK,BACKGROUND_RED,BACKGROUND_GREEN,BACKGROUND_YELLOW,BACKGROUND_BLUE,BACKGROUND_MAGENTA,BACKGROUND_CYAN,BACKGROUND_WHITE};
-
 	public static final Colors HighIntensity = new Colors(HIGH_INTENSITY);
 	public static final Colors Bold = HighIntensity;
 	public static final Colors LowIntensity = new Colors(LOW_INTENSITY);
@@ -87,17 +87,58 @@ public final class Colors implements Serializable{
 	public static final Colors BgCyan = new Colors(BACKGROUND_CYAN);
 	public static final Colors BgWhite = new Colors(BACKGROUND_WHITE);
 	
-	final private String[] codes;
-	final private String codes_str; 
+	private String[] codes;
+	private String codes_str; 
 
-	public Colors(String... codes) {
-		this.codes = codes;
+	public Colors(String... ANSICodes) {
+		this.codes = ANSICodes;
 		String _codes_str = "";
 		for (String code : codes) {
 			_codes_str += code;
 		}
 		codes_str = _codes_str;
 	}
+
+	/**
+	 * Creates a color with RGB values (between 0 and 255)
+	 * @param R
+	 * @param G
+	 * @param B
+	 */
+	private Colors(int T, int R, int G, int B){
+		if (R < 0){R = 0;}
+		if (G < 0){G = 0;}
+		if (B < 0) {B = 0;}
+		if (R > 255){R = 255;}
+		if (G > 255){G = 255;}
+		if (B > 255){B = 255;}
+		if (T == 1){
+			this.codes = new String[]{"\033[38;2;"+R+";"+G+";"+B+"m"}; 
+			this.codes_str = this.codes[0];
+		}
+		else{
+			this.codes = new String[]{"\033[48;2;"+R+";"+G+";"+B+"m"}; 
+			this.codes_str = this.codes[0];
+		}
+	}
+
+	/**
+	 * Creates a text color using the RGB parameters (may be uncompatible with all terminals)
+	 * @param R
+	 * @param G
+	 * @param B
+	 * @return
+	 */
+	public static Colors CreateTextColor(int R, int G, int B){return new Colors(1, R, G, B);}
+
+	/**
+	 * Creates a background color using the RGB parameters (may be uncompatible with all terminals)
+	 * @param R
+	 * @param G
+	 * @param B
+	 * @return
+	 */
+	public static Colors CreateBackgroundColor(int R, int G, int B){return new Colors(0, R, G, B);}
 	
 	/**
 	 * Adds a color (for use multiple when colorize)
@@ -146,21 +187,14 @@ public final class Colors implements Serializable{
 	 * @return
 	 */
 	public static String clearColor(String input){
-		for (String cadena: ListOfColors){
-			if (input.contains(cadena)){input = input.replace(cadena, "");}
-		}
-		return input;
+		Pattern patron = Pattern.compile("\\\\u.*?m");
+		Matcher matcher = patron.matcher(input);
+		return matcher.replaceAll("");	
 	}
 
-	/**
-	 * Gets color by string
-	 * @param input
-	 * @return
-	 */
 	public static String getColor(String input){
-		for (String cadena: ListOfColors){
-			if (input.contains(cadena)){return cadena;}
-		}
-		return "";
+		Pattern patron = Pattern.compile("\\\\u.*?m");
+		Matcher matcher = patron.matcher(input);
+		return matcher.toString();
 	}
 }
