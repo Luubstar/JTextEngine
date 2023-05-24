@@ -21,8 +21,14 @@ public class Engine {
     private static final String SPACE = " ";
     private static final String VSPACE = "\n";
 
-    static TerminalScreen screen;
-	static Terminal terminal;
+    private static TerminalScreen screen;
+	private static Terminal terminal;
+
+    public static Terminal getTerminal(){return terminal;}
+    public static void setTerminal(Terminal t){terminal = t;}
+    
+    public static TerminalScreen getScreen(){return screen;}
+    public static void setScreen(TerminalScreen s){screen = s;}
 
     public enum VAling{
         UP,
