@@ -47,7 +47,7 @@ public class Debug {
      * @param log
      * @param color
      */
-    public static void Log(String log, Colors color){DLog.add(new Log(color.colorizeNoSane("\n " + log)));CheckIfRepited();}
+    public static void Log(String log, Colors color){DLog.add(new Log("  " +color.colorizeNoSane(log)));CheckIfRepited();}
     /**
      * Logs a string using the static ints
      * @param log
@@ -171,7 +171,6 @@ public class Debug {
 
                 for (int i = 0; i < GetLog().size(); i++ ){
                     Log newlog = logs.get(i);
-                    
                     String ColoredMessage = newlog.getMessage() + newlog.getQuantityString();
                     String message  = Colors.clearColor(ColoredMessage);
                     String Color = Colors.getColor(ColoredMessage);

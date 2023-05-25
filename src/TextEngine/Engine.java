@@ -289,15 +289,15 @@ public class Engine {
             else{
                 String cleanText = Colors.clearColor(line);
                 int SpaceNeeded = WIDTH - cleanText.length();
-
-                if (aling == HAling.CENTER){
-                    if (SpaceNeeded%2 != 0){SpaceNeeded--;}
-                    line = SPACE.repeat(SpaceNeeded/2) + line + SPACE.repeat(SpaceNeeded/2);
+                if (SpaceNeeded > 0){
+                    if (aling == HAling.CENTER){
+                        if (SpaceNeeded%2 != 0){SpaceNeeded--;}
+                        line = SPACE.repeat(SpaceNeeded/2) + line + SPACE.repeat(SpaceNeeded/2);
+                    }
+                    else if (aling == HAling.RIGTH){line = SPACE.repeat(SpaceNeeded) + line;}
+                    else if (aling == HAling.LEFT){line = line + SPACE.repeat(SpaceNeeded);}
                 }
-                else if (aling == HAling.RIGTH){line = SPACE.repeat(SpaceNeeded) + line;}
-                else if (aling == HAling.LEFT){line = line + SPACE.repeat(SpaceNeeded);}
             }
-
             finalLine += line + "\n";
         }
         return finalLine;
@@ -315,13 +315,16 @@ public class Engine {
             
             int SpaceNeeded = HEIGHT - lines.length;
 
-            if (aling == VAling.CENTER){
-                if (SpaceNeeded%2 != 0){SpaceNeeded--;}
-                text = VSPACE.repeat(SpaceNeeded/2) + text + VSPACE.repeat((SpaceNeeded/2) - 2);
+            if (SpaceNeeded >= 0){
+                if (aling == VAling.CENTER){
+                    if (SpaceNeeded%2 != 0){SpaceNeeded--;}
+                    text = VSPACE.repeat(SpaceNeeded/2) + text + VSPACE.repeat((SpaceNeeded/2));
+                }
+                else if (aling == VAling.DOWN){text = VSPACE.repeat(SpaceNeeded) + text;}
+                else if (aling == VAling.UP){text = text + VSPACE.repeat(SpaceNeeded);}
             }
-            else if (aling == VAling.DOWN){text = VSPACE.repeat(SpaceNeeded) + text;}
-            else if (aling == VAling.UP){text = text + VSPACE.repeat(SpaceNeeded-2);}
             return text;
+            
         }
         return text;
     }

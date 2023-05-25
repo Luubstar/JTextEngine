@@ -87,6 +87,9 @@ public final class Colors implements Serializable{
 	public static final Colors BgCyan = new Colors(BACKGROUND_CYAN);
 	public static final Colors BgWhite = new Colors(BACKGROUND_WHITE);
 	
+	public static final int TYPE_BACKGROUND = 0;
+	public static final int TYPE_TEXT = 1;
+
 	private String[] codes;
 	private String codes_str; 
 
@@ -100,12 +103,13 @@ public final class Colors implements Serializable{
 	}
 
 	/**
-	 * Creates a color with RGB values (between 0 and 255)
+	 * Creates a color with RGB values (between 0 and 255) You can use CreateTextColor and CreateBackgroundColor too
+	 * @param T (Type, use the constants TYPE_TEXT or TYPE_Background)
 	 * @param R
 	 * @param G
 	 * @param B
 	 */
-	private Colors(int T, int R, int G, int B){
+	public Colors(int T, int R, int G, int B){
 		if (R < 0){R = 0;}
 		if (G < 0){G = 0;}
 		if (B < 0) {B = 0;}
@@ -187,13 +191,13 @@ public final class Colors implements Serializable{
 	 * @return
 	 */
 	public static String clearColor(String input){
-		Pattern patron = Pattern.compile("\\\\u\\d+m");
+		Pattern patron = Pattern.compile("\u001B\\[[\\d;]*[^\\d;]");
 		Matcher matcher = patron.matcher(input);
 		return matcher.replaceAll("");	
 	}
 
 	public static String getColor(String input){
-		Pattern patron = Pattern.compile("\\\\u\\d+m");
+		Pattern patron = Pattern.compile("\u001B\\[[\\d;]*[^\\d;]");
 		Matcher matcher = patron.matcher(input);
 		return matcher.toString();
 	}
