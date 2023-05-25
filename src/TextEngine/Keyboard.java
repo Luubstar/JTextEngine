@@ -134,7 +134,7 @@ public class Keyboard  {
 
 			if (IsLastKeyOfType("Character")){res += getKeyValue();}
 			else if (IsLastKeyOfType("Backspace") && res.length() > 0){res = res.substring(0,res.length()-1);}
-
+			else if (IsLastKeyOfType("Escape")){throw new InterruptedException("Action interrupted by user");}
 			if (laststring != res) {
 				laststring = res;
 				Engine.clearConsole();
