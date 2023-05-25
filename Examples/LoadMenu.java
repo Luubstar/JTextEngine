@@ -40,6 +40,10 @@ public class LoadMenu extends Menu {
     public void Update() {
         pos++;
 
+        Debug.LogMessage(Keyboard.isShiftPressed()+"Shift");
+        Debug.LogMessage(Keyboard.isAltPressed()+"Alt");
+        Debug.LogMessage(Keyboard.isControlPressed()+"Control");
+
         if (pos >= opciones.length*2){pos = 0;}
         if (Keyboard.IsLastKeyOfType("Enter")){ Engine.SetMenu( new StartMenu());}
         

@@ -35,11 +35,11 @@ public class Keyboard  {
 	public static void DetectInput() throws IOException{
 		KeyStroke keyStroke = screen.pollInput();
 		if (keyStroke != null) {
+			Shift = keyStroke.isShiftDown();
+			Control = keyStroke.isCtrlDown();
+			Alt = keyStroke.isAltDown();
 			if (keyStroke.getKeyType() != null) {
 				LastKeyType = keyStroke.getKeyType();
-				Shift = keyStroke.isShiftDown();
-				Control = keyStroke.isCtrlDown();
-				Alt = keyStroke.isAltDown();
 				pos = 0;
 				if (keyStroke.getCharacter() != null){
 					LastChar = keyStroke.getCharacter();
