@@ -187,13 +187,13 @@ public final class Colors implements Serializable{
 	 * @return
 	 */
 	public static String clearColor(String input){
-		Pattern patron = Pattern.compile("\\\\u.*?m");
+		Pattern patron = Pattern.compile("\\\\u\\d+m");
 		Matcher matcher = patron.matcher(input);
 		return matcher.replaceAll("");	
 	}
 
 	public static String getColor(String input){
-		Pattern patron = Pattern.compile("\\\\u.*?m");
+		Pattern patron = Pattern.compile("\\\\u\\d+m");
 		Matcher matcher = patron.matcher(input);
 		return matcher.toString();
 	}

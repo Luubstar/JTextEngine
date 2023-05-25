@@ -2,7 +2,6 @@
 import TextEngine.Engine;
 import TextEngine.Keyboard;
 import TextEngine.Menu;
-
 public class LoadMenu extends Menu {
     int pos = 0;
     String[] opciones = {"/", "/", "-", "-", "\\", "\\", "|", "|"};

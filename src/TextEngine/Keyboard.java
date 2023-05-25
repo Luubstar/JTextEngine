@@ -37,6 +37,9 @@ public class Keyboard  {
 		if (keyStroke != null) {
 			if (keyStroke.getKeyType() != null) {
 				LastKeyType = keyStroke.getKeyType();
+				Shift = keyStroke.isShiftDown();
+				Control = keyStroke.isCtrlDown();
+				Alt = keyStroke.isAltDown();
 				pos = 0;
 				if (keyStroke.getCharacter() != null){
 					LastChar = keyStroke.getCharacter();
@@ -46,10 +49,6 @@ public class Keyboard  {
 				}
 			}
 			else{Clear();}
-			Shift = keyStroke.isShiftDown();
-			Control = keyStroke.isCtrlDown();
-			Alt = keyStroke.isAltDown();
-
 		}
 	}
 	
