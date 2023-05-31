@@ -92,6 +92,10 @@ public final class Colors implements Serializable{
 
 	private String[] codes;
 	private String codes_str; 
+	
+	public int R;
+	public int G;
+	public int B;
 
 	public Colors(String... ANSICodes) {
 		this.codes = ANSICodes;
@@ -124,6 +128,9 @@ public final class Colors implements Serializable{
 			this.codes = new String[]{"\033[48;2;"+R+";"+G+";"+B+"m"}; 
 			this.codes_str = this.codes[0];
 		}
+		this.R = R;
+		this.G = G;
+		this.B = B;
 	}
 
 	/**
@@ -200,5 +207,12 @@ public final class Colors implements Serializable{
 		Pattern patron = Pattern.compile("\u001B\\[[\\d;]*[^\\d;]");
 		Matcher matcher = patron.matcher(input);
 		return matcher.toString();
+	}
+
+	/*
+	 * Returns an int[] if the color was created using RGB values
+	 */
+	public static int[] ReturnRGB(Colors color){
+		return new int[]{color.R, color.G, color.B};
 	}
 }
