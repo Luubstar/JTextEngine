@@ -26,7 +26,7 @@ Here're some of the project's best features:
 
 <p>3. Enjoy coding!</p>
 
-<p> It is recommended to use consoles like Kitty, because have hardware-acceleration and prevent flickering that can occur when drawing many frames. 
+<p> It is recommended to use consoles like Kitty, because the hardware-acceleration prevent flickering that can occur when drawing many frames. 
 
 [Get kitty from here](https://sw.kovidgoyal.net/kitty/)
 
